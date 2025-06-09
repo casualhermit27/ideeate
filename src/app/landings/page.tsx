@@ -6,6 +6,7 @@ import { X, Copy, Check } from 'lucide-react'
 import FloatingNavbar from '@/components/floating-navbar'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import ImageModal from '@/components/image-modal'
 
 const categories = [
 	'All',
@@ -26,7 +27,7 @@ const landingData = [
 		category: 'SaaS', 
 		height: 'h-96',
 		platform: 'Lovable',
-		image: '/api/placeholder/400/800', // Placeholder for now
+		image: '/images/stacktrakr.png',
 		prompt: 'Create a modern SaaS dashboard landing page with clean design, feature highlights, pricing tiers, and compelling CTAs. Focus on conversion optimization and user trust signals.',
 		rating: 4.9,
 		views: '2.5k'
@@ -37,7 +38,7 @@ const landingData = [
 		category: 'E-commerce', 
 		height: 'h-112',
 		platform: 'Webflow',
-		image: '/api/placeholder/400/900',
+		image: '/images/contractiq.png',
 		prompt: 'Design a high-converting e-commerce landing page with product showcase, customer reviews, secure checkout indicators, and mobile-optimized layout.',
 		rating: 4.8,
 		views: '3.2k'
@@ -48,7 +49,7 @@ const landingData = [
 		category: 'Portfolio', 
 		height: 'h-88',
 		platform: 'Framer',
-		image: '/api/placeholder/400/700',
+		image: '/images/Trendify.png',
 		prompt: 'Build a stunning creative portfolio with smooth animations, project galleries, about section, and contact form. Emphasize visual storytelling and personal branding.',
 		rating: 4.9,
 		views: '1.8k'
@@ -248,247 +249,104 @@ export default function LandingsPage() {
 						</p>
 					</motion.div>
 
-					{/* Category Pills */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-						className="flex flex-wrap justify-center gap-3 mb-12"
-					>
+					{/* Categories */}
+					<div className="flex flex-wrap gap-2 justify-center mb-12">
 						{categories.map((category, index) => (
-							<motion.div
+							<motion.button
 								key={category}
-								initial={{ opacity: 0, scale: 0.8 }}
-								animate={{ opacity: 1, scale: 1 }}
-								transition={{ duration: 0.4, delay: 0.1 * index }}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.6, delay: index * 0.1 }}
+								onClick={() => setSelectedCategory(category)}
+								className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+									selectedCategory === category
+										? 'bg-primary text-primary-foreground'
+										: 'bg-muted hover:bg-muted/80 text-muted-foreground'
+								}`}
 							>
-								<Button
-									variant={selectedCategory === category ? "default" : "ghost"}
-									onClick={() => setSelectedCategory(category)}
-									className={`
-										rounded-full px-6 py-2 transition-all duration-300
-										${selectedCategory === category 
-											? 'bg-foreground text-background hover:bg-foreground/80' 
-											: 'bg-muted text-muted-foreground hover:bg-accent hover:text-foreground'
-										}
-									`}
-								>
-									{category}
-								</Button>
-							</motion.div>
+								{category}
+							</motion.button>
 						))}
-					</motion.div>
+					</div>
 
-					{/* Bigger Masonry Grid */}
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ duration: 0.8, delay: 0.4 }}
-						className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8"
-					>
+					{/* Grid */}
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{filteredLandings.map((landing, index) => (
 							<motion.div
 								key={landing.id}
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: 0.1 * index }}
-								className="break-inside-avoid mb-8"
+								transition={{ duration: 0.6, delay: index * 0.1 }}
+								className="group relative bg-card rounded-xl overflow-hidden border shadow-sm hover:shadow-lg transition-shadow"
 							>
+								{/* Image */}
 								<div 
-									className="group bg-card border border-border rounded-3xl overflow-hidden hover:bg-accent/10 hover:border-border/60 transition-all duration-300 cursor-pointer"
+									className="relative w-full cursor-pointer"
 									onClick={() => setSelectedLanding(landing)}
 								>
-									{/* Landing Page Image */}
-									<div className={`${landing.height} relative overflow-hidden bg-muted`}>
+									<div className="relative aspect-[4/3] overflow-hidden">
 										<Image
 											src={landing.image}
 											alt={landing.title}
-											fill
-											className="object-cover group-hover:scale-105 transition-transform duration-300"
+											className="object-cover object-top w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+											width={800}
+											height={600}
+											priority={index < 6}
 										/>
 									</div>
-									
-									{/* Content */}
-									<div className="p-6">
-										<div className="space-y-4">
-											{/* Header */}
-											<div className="flex items-center justify-between">
-												<h3 className="text-lg font-semibold text-foreground">
-													{landing.title}
-												</h3>
-												<span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full">
-													{landing.category}
-												</span>
-											</div>
+								</div>
 
-											{/* Platform Tag */}
-											<div className="flex items-center justify-between">
-												<span className={`text-xs px-3 py-1 rounded-full font-medium ${getPlatformColor(landing.platform)}`}>
-													{landing.platform}
-												</span>
-												<div className="flex items-center space-x-3 text-muted-foreground">
-													<span className="text-sm">⭐ {landing.rating}</span>
-													<span className="text-sm">•</span>
-													<span className="text-sm">{landing.views} views</span>
-												</div>
-											</div>
+								{/* Content */}
+								<div className="p-6">
+									<div className="flex items-center justify-between mb-4">
+										<h3 className="text-lg font-semibold text-foreground">
+											{landing.title}
+										</h3>
+										<span className={`px-3 py-1 rounded-full text-xs font-medium ${getPlatformColor(landing.platform)}`}>
+											{landing.platform}
+										</span>
+									</div>
 
-											{/* Prompt Preview */}
-											<div className="space-y-2">
-												<h4 className="text-sm font-medium text-foreground">Prompt:</h4>
-												<p className="text-sm text-muted-foreground overflow-hidden" style={{
-													display: '-webkit-box',
-													WebkitLineClamp: 2,
-													WebkitBoxOrient: 'vertical'
-												}}>
-													{landing.prompt}
-												</p>
-											</div>
+									<div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+										<div className="flex items-center gap-1">
+											<span>⭐</span>
+											<span>{landing.rating}</span>
 										</div>
+										<div>{landing.views} views</div>
+									</div>
+
+									<div className="relative">
+										<Button
+											variant="outline"
+											className="w-full"
+											onClick={() => copyToClipboard(landing.prompt, landing.id)}
+										>
+											{copiedId === landing.id ? (
+												<>
+													<Check className="w-4 h-4 mr-2" />
+													Copied!
+												</>
+											) : (
+												<>
+													<Copy className="w-4 h-4 mr-2" />
+													Copy Prompt
+												</>
+											)}
+										</Button>
 									</div>
 								</div>
 							</motion.div>
 						))}
-					</motion.div>
-
-					{/* Load More Button */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.8 }}
-						className="text-center mt-16"
-					>
-						<Button
-							variant="ghost"
-							className="bg-muted text-foreground hover:bg-accent rounded-xl px-8 py-3"
-						>
-							Load More Landing Pages
-						</Button>
-					</motion.div>
+					</div>
 				</div>
 			</main>
 
-			{/* Modal for Full Image View */}
-			<AnimatePresence>
-				{selectedLanding && (
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-						onClick={() => setSelectedLanding(null)}
-					>
-											<motion.div
-						initial={{ scale: 0.8, opacity: 0 }}
-						animate={{ scale: 1, opacity: 1 }}
-						exit={{ scale: 0.8, opacity: 0 }}
-						className="bg-card border border-border rounded-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden"
-						onClick={(e) => e.stopPropagation()}
-					>
-							{/* Header */}
-							<div className="flex items-center justify-between p-6 border-b border-border">
-								<div className="flex items-center space-x-4">
-									<h2 className="text-xl font-semibold text-foreground">{selectedLanding.title}</h2>
-									<span className={`text-xs px-3 py-1 rounded-full font-medium ${getPlatformColor(selectedLanding.platform)}`}>
-										{selectedLanding.platform}
-									</span>
-								</div>
-								<Button
-									variant="ghost"
-									size="sm"
-									onClick={() => setSelectedLanding(null)}
-									className="text-muted-foreground hover:text-foreground"
-								>
-									<X className="w-5 h-5" />
-								</Button>
-							</div>
-
-							{/* Content */}
-							<div className="flex flex-col xl:flex-row">
-								{/* Full Image */}
-								<div className="xl:w-2/3 relative h-96 xl:h-[700px] bg-muted">
-									<Image
-										src={selectedLanding.image}
-										alt={selectedLanding.title}
-										fill
-										className="object-cover"
-									/>
-								</div>
-
-								{/* Details */}
-								<div className="xl:w-1/3 p-6 space-y-6 overflow-y-auto max-h-[700px]">
-									{/* Stats */}
-									<div className="flex items-center space-x-6 text-sm text-muted-foreground">
-										<span>⭐ {selectedLanding.rating}</span>
-										<span>{selectedLanding.views} views</span>
-										<span className="px-2 py-1 bg-muted rounded text-xs">{selectedLanding.category}</span>
-									</div>
-
-									{/* Prompt Section */}
-									<div className="space-y-3">
-										<div className="flex items-center justify-between">
-											<h3 className="text-lg font-semibold text-foreground">
-												{selectedLanding.platform} Prompt
-											</h3>
-											<Button
-												variant="ghost"
-												size="sm"
-												onClick={() => copyToClipboard(selectedLanding.prompt, selectedLanding.id)}
-												className="text-muted-foreground hover:text-foreground"
-											>
-												{copiedId === selectedLanding.id ? (
-													<Check className="w-4 h-4 text-green-500" />
-												) : (
-													<Copy className="w-4 h-4" />
-												)}
-											</Button>
-										</div>
-										
-										<div className="bg-muted p-4 rounded-lg">
-											<p className="text-sm text-foreground leading-relaxed">
-												{selectedLanding.prompt}
-											</p>
-										</div>
-									</div>
-
-									{/* Platform Info */}
-									<div className="space-y-3">
-										<h4 className="font-medium text-foreground">About {selectedLanding.platform}</h4>
-										<div className="text-sm text-muted-foreground space-y-2">
-											{selectedLanding.platform === 'Lovable' && (
-												<p>Lovable is an AI-powered web development platform that builds full-stack applications from prompts.</p>
-											)}
-											{selectedLanding.platform === 'Webflow' && (
-												<p>Webflow is a visual web development platform for designing, building, and launching responsive websites.</p>
-											)}
-											{selectedLanding.platform === 'Framer' && (
-												<p>Framer is a powerful design tool for creating interactive prototypes and production-ready websites.</p>
-											)}
-											{selectedLanding.platform === 'V0' && (
-												<p>V0 is Vercel&apos;s generative user interface system powered by AI for rapid UI development.</p>
-											)}
-										</div>
-									</div>
-
-									{/* Action Buttons */}
-									<div className="flex space-x-3 pt-4">
-										<Button className="flex-1">
-											Use This Design
-										</Button>
-										<Button variant="outline" className="flex-1">
-											View Live Demo
-										</Button>
-									</div>
-								</div>
-							</div>
-						</motion.div>
-					</motion.div>
-				)}
-			</AnimatePresence>
-
-			{/* Background Pattern */}
-			<div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--muted)/0.1)_0%,transparent_50%)] pointer-events-none" />
-			<div className="fixed inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,hsl(var(--muted)/0.05)_60deg,transparent_120deg)] pointer-events-none" />
+			{/* Image Modal */}
+			<ImageModal
+				isOpen={!!selectedLanding}
+				onClose={() => setSelectedLanding(null)}
+				landing={selectedLanding}
+			/>
 		</div>
 	)
 } 
