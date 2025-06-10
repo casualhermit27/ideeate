@@ -1159,7 +1159,7 @@ const componentData: ComponentType[] = [
 >
 	<div className="p-4">
 		<h4 className="text-white font-medium text-sm mb-3">Recent Searches</h4>
-  <div className="space-y-2">
+		<div className="space-y-2">
 			{['React Components', 'Glassmorphism UI', 'Animation Library'].map((item, index) => (
 				<motion.button
 					key={index}
@@ -1170,8 +1170,8 @@ const componentData: ComponentType[] = [
 					<span className="text-sm">{item}</span>
 				</motion.button>
 			))}
-    </div>
-  </div>
+		</div>
+	</div>
 </motion.div>` },
 	{ id: 28, title: 'Flux', category: 'Pricing', preview: <PricingToggle />, size: 'normal', code: `const [isYearly, setIsYearly] = useState(false)
 
@@ -1323,7 +1323,7 @@ export default function ComponentsPage() {
 								className={`group bg-card border border-border rounded-xl overflow-hidden hover:border-border/60 transition-all duration-300 ${getComponentSize(component.size)}`}
 							>
 								{/* Component Preview Area */}
-								<div className="h-full bg-gradient-to-br from-gray-900 via-black to-gray-900 group-hover:from-gray-800 group-hover:via-gray-900 group-hover:to-gray-800 transition-all duration-300 relative flex flex-col">
+								<div className="h-full bg-gradient-to-br from-gray-900 via-black to-gray-900 group-hover:from-gray-800 group-hover:via-gray-900 group-hover:to-gray-800 transition-all duration-300 relative">
 									{/* Action Buttons - Top Right */}
 									<div className="absolute top-4 right-4 flex space-x-2 z-10">
 										<motion.button
@@ -1341,23 +1341,18 @@ export default function ComponentsPage() {
 											whileTap={{ scale: 0.95 }}
 											className="p-2 bg-black/40 hover:bg-black/60 rounded-lg transition-all duration-200 backdrop-blur-sm"
 											title="Copy Name"
-											>
-												{copiedId === component.id ? (
+										>
+											{copiedId === component.id ? (
 												<Check className="w-4 h-4 text-green-400" />
-												) : (
+											) : (
 												<Copy className="w-4 h-4 text-white/60 hover:text-white" />
-												)}
+											)}
 										</motion.button>
-										</div>
+									</div>
 
 									{/* Component Preview - Center */}
-									<div className="flex-1 flex items-center justify-center p-6">
+									<div className="flex items-center justify-center p-6 h-full">
 										{component.preview}
-									</div>
-									
-									{/* Component Name - Bottom */}
-									<div className="px-4 py-5 bg-black/20 backdrop-blur-sm border-t border-white/10">
-										<h3 className="text-sm font-semibold text-white text-center">{component.title}</h3>
 									</div>
 								</div>
 							</motion.div>
