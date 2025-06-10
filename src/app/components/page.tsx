@@ -660,28 +660,28 @@ const PricingToggle = () => {
 }
 
 const componentData = [
-	{ id: 1, title: 'Glassmorphism Button', category: 'Buttons', preview: <GlassmorphismButton />, size: 'normal' },
-	{ id: 2, title: 'Floating Navigation', category: 'Navigation', preview: <FloatingNav />, size: 'wide' },
-	{ id: 3, title: 'Glass Card', category: 'Cards', preview: <GlassCard />, size: 'tall' },
-	{ id: 4, title: 'Floating Search', category: 'Inputs', preview: <FloatingSearchBar />, size: 'wide' },
-	{ id: 5, title: 'Glass Toggle', category: 'Toggles', preview: <GlassmorphToggle />, size: 'normal' },
-	{ id: 6, title: 'Floating Notification', category: 'Notifications', preview: <FloatingNotification />, size: 'wide' },
-	{ id: 7, title: 'Gradient Button', category: 'Buttons', preview: <GradientButton />, size: 'normal' },
-	{ id: 8, title: 'Floating Profile', category: 'Cards', preview: <FloatingProfile />, size: 'normal' },
-	{ id: 9, title: 'Animated Counter', category: 'Buttons', preview: <AnimatedCounter />, size: 'normal' },
-	{ id: 10, title: 'Glowing Input', category: 'Inputs', preview: <GlowingInput />, size: 'wide' },
-	{ id: 11, title: 'Floating Action Button', category: 'Buttons', preview: <FloatingActionButton />, size: 'tall' },
-	{ id: 12, title: 'Password Input', category: 'Inputs', preview: <PasswordInput />, size: 'wide' },
-	{ id: 13, title: 'Audio Player', category: 'Players', preview: <AudioPlayer />, size: 'normal' },
-	{ id: 14, title: 'Glass Modal', category: 'Cards', preview: <GlassModal />, size: 'normal' },
-	{ id: 15, title: 'Vertical Floating Nav', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'normal' },
-	{ id: 16, title: 'Sidebar Navigation', category: 'Navigation', preview: <SidebarNav />, size: 'wide' },
-	{ id: 17, title: 'Loading Spinner', category: 'Loading', preview: <LoadingSpinner />, size: 'normal' },
-	{ id: 18, title: 'Pulse Loader', category: 'Loading', preview: <PulseLoader />, size: 'normal' },
-	{ id: 19, title: 'Progress Bar', category: 'Loading', preview: <ProgressBar />, size: 'wide' },
-	{ id: 20, title: 'Stats Card', category: 'Cards', preview: <StatsCard />, size: 'normal' },
-	{ id: 21, title: 'Neumorphism Button', category: 'Buttons', preview: <NeumorphismButton />, size: 'normal' },
-	{ id: 22, title: 'Pricing Section', category: 'Pricing', preview: (
+	{ id: 1, title: 'Prism - Holographic button with light refraction effects', category: 'Buttons', preview: <GlassmorphismButton />, size: 'normal' },
+	{ id: 2, title: 'Orbit - Navigation that orbits with gravitational physics', category: 'Navigation', preview: <FloatingNav />, size: 'wide' },
+	{ id: 3, title: 'Crystal - Crystalline card with light refraction and depth', category: 'Cards', preview: <GlassCard />, size: 'tall' },
+	{ id: 4, title: 'Echo - Search that propagates queries as sonic waves', category: 'Inputs', preview: <FloatingSearchBar />, size: 'wide' },
+	{ id: 5, title: 'Ember - Toggle that ignites with glowing ember effects', category: 'Toggles', preview: <GlassmorphToggle />, size: 'normal' },
+	{ id: 6, title: 'Flare - Notification that bursts like solar flares', category: 'Notifications', preview: <FloatingNotification />, size: 'wide' },
+	{ id: 7, title: 'Pulse - Button with rhythmic energy waves', category: 'Buttons', preview: <GradientButton />, size: 'normal' },
+	{ id: 8, title: 'Lens - Profile with gravitational lensing effects', category: 'Cards', preview: <FloatingProfile />, size: 'normal' },
+	{ id: 9, title: 'Quantum - Counter with quantum state visualization', category: 'Buttons', preview: <AnimatedCounter />, size: 'normal' },
+	{ id: 10, title: 'Flow - Input where text emerges from liquid surfaces', category: 'Inputs', preview: <GlowingInput />, size: 'wide' },
+	{ id: 11, title: 'Drift - Actions that drift in magnetic levitation', category: 'Buttons', preview: <FloatingActionButton />, size: 'tall' },
+	{ id: 12, title: 'Vault - Secure input with quantum encryption effects', category: 'Inputs', preview: <PasswordInput />, size: 'wide' },
+	{ id: 13, title: 'Resonance - Audio with frequency visualization', category: 'Players', preview: <AudioPlayer />, size: 'normal' },
+	{ id: 14, title: 'Portal - Modal that opens as dimensional gateway', category: 'Cards', preview: <GlassModal />, size: 'normal' },
+	{ id: 15, title: 'Nebula - Vertical nav with cosmic particle effects', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'normal' },
+	{ id: 16, title: 'Matrix - Sidebar with holographic data projection', category: 'Navigation', preview: <SidebarNav />, size: 'wide' },
+	{ id: 17, title: 'Helix - DNA-inspired loading with double helix rotation', category: 'Loading', preview: <LoadingSpinner />, size: 'normal' },
+	{ id: 18, title: 'Neutron - Pulsing loader with atomic particle effects', category: 'Loading', preview: <PulseLoader />, size: 'normal' },
+	{ id: 19, title: 'Wave - Progress shown as gravitational waves', category: 'Loading', preview: <ProgressBar />, size: 'wide' },
+	{ id: 20, title: 'Spectrum - Data visualized as light spectrum', category: 'Cards', preview: <StatsCard />, size: 'normal' },
+	{ id: 21, title: 'Forge - Button with metallic crafting effects', category: 'Buttons', preview: <NeumorphismButton />, size: 'normal' },
+	{ id: 22, title: 'Cosmos - Pricing with stellar formation effects', category: 'Pricing', preview: (
 		<div className="grid grid-cols-3 gap-4 w-full">
 			<PricingCard 
 				plan="Starter" 
@@ -701,12 +701,12 @@ const componentData = [
 			/>
 		</div>
 	), size: 'pricing' },
-	{ id: 23, title: 'Floating Action Bar', category: 'Buttons', preview: <FloatingActionBar />, size: 'normal' },
-	{ id: 24, title: 'Feature Card', category: 'Cards', preview: <FeatureCard />, size: 'normal' },
-	{ id: 25, title: 'Testimonial Card', category: 'Cards', preview: <TestimonialCard />, size: 'normal' },
-	{ id: 26, title: 'Notification Bell', category: 'Buttons', preview: <NotificationBell />, size: 'normal' },
-	{ id: 27, title: 'Search Suggestions', category: 'Inputs', preview: <SearchSuggestions />, size: 'wide' },
-	{ id: 28, title: 'Pricing Toggle', category: 'Pricing', preview: <PricingToggle />, size: 'normal' }
+	{ id: 23, title: 'Aurora - Actions with magnetic field visualization', category: 'Buttons', preview: <FloatingActionBar />, size: 'normal' },
+	{ id: 24, title: 'Bloom - Feature card that blooms with organic growth', category: 'Cards', preview: <FeatureCard />, size: 'normal' },
+	{ id: 25, title: 'Wisp - Testimonial that appears as ethereal wisp', category: 'Cards', preview: <TestimonialCard />, size: 'normal' },
+	{ id: 26, title: 'Beacon - Notification with plasma containment effects', category: 'Buttons', preview: <NotificationBell />, size: 'normal' },
+	{ id: 27, title: 'Ripple - Search suggestions with ripple animations', category: 'Inputs', preview: <SearchSuggestions />, size: 'wide' },
+	{ id: 28, title: 'Flux - Pricing toggle with energy field transitions', category: 'Pricing', preview: <PricingToggle />, size: 'normal' }
 ]
 
 export default function ComponentsPage() {
