@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Copy, Check, Code2, Sparkles, Calendar, ChevronLeft, ChevronRight, Menu, X, Search, Heart, Star, ShoppingCart, Download, Play, Pause, Volume2, SkipBack, SkipForward, Plus, Bell, Settings, User, Mail, Phone, MapPin, Globe, Lock, Eye, EyeOff, Zap, Home, Folder, BarChart3, Users, MessageCircle, CreditCard, CheckCircle, Loader2, TrendingUp, DollarSign, ArrowRight, Target, Award, Shield } from 'lucide-react'
+import { Copy, Check, Sparkles, Search, Heart, Star, Download, Play, Pause, SkipBack, SkipForward, Plus, Bell, Settings, User, Eye, EyeOff, Zap, Home, Folder, BarChart3, Users, CheckCircle, TrendingUp, Share, MoreHorizontal } from 'lucide-react'
 import FloatingNavbar from '@/components/floating-navbar'
 import { Button } from '@/components/ui/button'
 
 const categories = [
 	'All',
 	'Buttons',
-	'Navigation', 
+	'Navigation',
 	'Cards',
 	'Inputs',
 	'Players',
@@ -168,8 +168,8 @@ const FloatingSearchBar = () => (
 		whileHover={{ scale: 1.02 }}
 		className="relative w-full max-w-md"
 	>
-		<input 
-			type="text" 
+  <input 
+    type="text" 
 			placeholder="Search anything..." 
 			className="w-full px-6 py-4 pl-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-white placeholder-gray-300 focus:outline-none focus:border-white/40 transition-all duration-300"
 		/>
@@ -206,12 +206,12 @@ const FloatingNotification = () => (
 		<div className="flex items-center space-x-3">
 			<div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
 				<Bell className="w-5 h-5 text-white" />
-			</div>
+      </div>
 			<div>
 				<p className="text-white font-medium text-sm">New Message</p>
 				<p className="text-gray-300 text-xs">You have a new notification</p>
-			</div>
-		</div>
+      </div>
+    </div>
 	</motion.div>
 )
 
@@ -233,12 +233,12 @@ const FloatingProfile = () => (
 		<div className="flex items-center space-x-3">
 			<div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
 				<User className="w-6 h-6 text-white" />
-			</div>
+  </div>
 			<div>
 				<p className="text-white font-medium">John Doe</p>
 				<p className="text-gray-300 text-sm">Designer</p>
-			</div>
-		</div>
+    </div>
+  </div>
 	</motion.div>
 )
 
@@ -272,8 +272,8 @@ const AnimatedCounter = () => {
 				>
 					+
 				</motion.button>
-			</div>
-		</div>
+      </div>
+    </div>
 	)
 }
 
@@ -357,12 +357,12 @@ const AudioPlayer = () => {
 			<div className="flex items-center space-x-3 mb-3">
 				<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
 					<span className="text-white font-bold">♪</span>
-				</div>
+  </div>
 				<div className="flex-1">
 					<h4 className="text-white font-semibold text-sm">Aesthetic</h4>
 					<p className="text-gray-400 text-xs">Lo-Fi Vibes</p>
-				</div>
-			</div>
+  </div>
+  </div>
 			
 			<div className="flex items-center justify-center space-x-4">
 				<motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -379,7 +379,7 @@ const AudioPlayer = () => {
 				<motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
 					<SkipForward className="w-4 h-4 text-white" />
 				</motion.button>
-			</div>
+  </div>
 		</motion.div>
 	)
 }
@@ -423,7 +423,7 @@ const GlassModal = () => {
 					</motion.div>
 				</motion.div>
 			)}
-		</div>
+  </div>
 	)
 }
 
@@ -435,7 +435,7 @@ const LoadingSpinner = () => (
 			className="w-12 h-12 border-4 border-white/20 border-t-purple-500 rounded-full"
 		/>
 		<p className="text-white text-sm">Loading...</p>
-	</div>
+  </div>
 )
 
 const PulseLoader = () => (
@@ -459,7 +459,7 @@ const PulseLoader = () => (
 )
 
 const ProgressBar = () => {
-	const [progress, setProgress] = useState(65)
+	const progress = 65
 	
 	return (
 		<div className="w-full">
@@ -474,8 +474,8 @@ const ProgressBar = () => {
 					animate={{ width: `${progress}%` }}
 					transition={{ duration: 1.5, ease: "easeOut" }}
 				/>
-			</div>
-		</div>
+    </div>
+  </div>
 	)
 }
 
@@ -499,11 +499,165 @@ const NeumorphismButton = () => (
 	<motion.button
 		whileHover={{ scale: 1.05 }}
 		whileTap={{ scale: 0.95 }}
-		className="px-8 py-4 bg-gray-800 text-white font-medium rounded-2xl shadow-[inset_-2px_-2px_6px_rgba(255,255,255,0.1),inset_2px_2px_6px_rgba(0,0,0,0.8)] hover:shadow-[inset_-1px_-1px_3px_rgba(255,255,255,0.1),inset_1px_1px_3px_rgba(0,0,0,0.8)] transition-all duration-300"
+		className="px-8 py-4 bg-gray-200 text-gray-800 rounded-2xl shadow-[inset_8px_8px_16px_#bebebe,inset_-8px_-8px_16px_#ffffff] hover:shadow-[inset_12px_12px_20px_#bebebe,inset_-12px_-12px_20px_#ffffff] transition-all duration-300 font-medium"
 	>
 		Neumorphism
 	</motion.button>
 )
+
+const FloatingActionBar = () => (
+	<motion.div 
+		initial={{ y: 20, opacity: 0 }}
+		animate={{ y: 0, opacity: 1 }}
+		className="flex items-center space-x-3 px-4 py-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	>
+		{[Heart, Share, Download, MoreHorizontal].map((Icon, index) => (
+			<motion.button
+				key={index}
+				whileHover={{ scale: 1.1, y: -2 }}
+				whileTap={{ scale: 0.9 }}
+				className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition-colors"
+			>
+				<Icon className="w-4 h-4" />
+			</motion.button>
+		))}
+	</motion.div>
+)
+
+const FeatureCard = () => (
+	<motion.div 
+		whileHover={{ scale: 1.02, y: -4 }}
+		className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+	>
+		<div className="mb-4">
+			<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
+				<Zap className="w-6 h-6 text-white" />
+			</div>
+			<h3 className="text-lg font-bold text-white mb-2">Fast Performance</h3>
+			<p className="text-gray-400 text-sm">Lightning fast loading with optimized code</p>
+		</div>
+		<motion.div 
+			className="w-full h-1 bg-white/10 rounded-full overflow-hidden"
+		>
+			<motion.div 
+				className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
+				initial={{ width: 0 }}
+				animate={{ width: '85%' }}
+				transition={{ duration: 1.5, delay: 0.5 }}
+			/>
+		</motion.div>
+	</motion.div>
+)
+
+const TestimonialCard = () => (
+	<motion.div 
+		whileHover={{ scale: 1.02 }}
+		className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	>
+		<div className="flex items-center space-x-1 mb-4">
+			{[...Array(5)].map((_, i) => (
+				<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+			))}
+		</div>
+		<p className="text-gray-300 text-sm mb-4">&quot;Amazing components with beautiful animations. Saved me hours of development time!&quot;</p>
+		<div className="flex items-center space-x-3">
+			<div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+				<User className="w-5 h-5 text-white" />
+			</div>
+			<div>
+				<p className="text-white text-sm font-medium">Sarah Chen</p>
+				<p className="text-gray-400 text-xs">Frontend Developer</p>
+			</div>
+		</div>
+	</motion.div>
+)
+
+const NotificationBell = () => {
+	const [hasNotification, setHasNotification] = useState(true)
+	
+	return (
+		<motion.button
+			onClick={() => setHasNotification(!hasNotification)}
+			whileHover={{ scale: 1.1 }}
+			whileTap={{ scale: 0.9 }}
+			className="relative w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+		>
+			<Bell className="w-5 h-5" />
+			{hasNotification && (
+				<motion.div 
+					initial={{ scale: 0 }}
+					animate={{ scale: 1 }}
+					className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center"
+				>
+					<span className="text-white text-xs font-bold">3</span>
+				</motion.div>
+			)}
+		</motion.button>
+	)
+}
+
+const SearchSuggestions = () => (
+	<motion.div 
+		initial={{ y: -10, opacity: 0 }}
+		animate={{ y: 0, opacity: 1 }}
+		className="w-full max-w-sm bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+	>
+		<div className="p-4">
+			<h4 className="text-white font-medium text-sm mb-3">Recent Searches</h4>
+			<div className="space-y-2">
+				{['React Components', 'Glassmorphism UI', 'Animation Library'].map((item, index) => (
+					<motion.button
+						key={index}
+						whileHover={{ scale: 1.02, x: 4 }}
+						className="w-full flex items-center space-x-3 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
+					>
+						<Search className="w-4 h-4" />
+						<span className="text-sm">{item}</span>
+					</motion.button>
+				))}
+			</div>
+		</div>
+	</motion.div>
+)
+
+const PricingToggle = () => {
+	const [isYearly, setIsYearly] = useState(false)
+	
+	return (
+		<motion.div 
+			className="flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
+		>
+			<span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
+				Monthly
+			</span>
+			<motion.button
+				onClick={() => setIsYearly(!isYearly)}
+				className={`relative w-14 h-7 rounded-full transition-all duration-300 ${
+					isYearly ? 'bg-purple-500' : 'bg-white/20'
+				}`}
+				whileTap={{ scale: 0.95 }}
+			>
+				<motion.div
+					className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
+					animate={{ x: isYearly ? 28 : 4 }}
+					transition={{ type: "spring", stiffness: 500, damping: 30 }}
+				/>
+			</motion.button>
+			<span className={`text-sm font-medium transition-colors ${isYearly ? 'text-white' : 'text-gray-400'}`}>
+				Yearly
+			</span>
+			{isYearly && (
+				<motion.span 
+					initial={{ scale: 0, opacity: 0 }}
+					animate={{ scale: 1, opacity: 1 }}
+					className="px-2 py-1 bg-green-500 text-white text-xs rounded-full font-bold"
+				>
+					20% OFF
+				</motion.span>
+			)}
+		</motion.div>
+	)
+}
 
 const componentData = [
 	{ id: 1, title: 'Glassmorphism Button', category: 'Buttons', preview: <GlassmorphismButton />, size: 'normal' },
@@ -546,7 +700,13 @@ const componentData = [
 				features={["Unlimited Projects", "1TB Storage", "24/7 Support", "Custom Integrations"]}
 			/>
 		</div>
-	), size: 'pricing' }
+	), size: 'pricing' },
+	{ id: 23, title: 'Floating Action Bar', category: 'Buttons', preview: <FloatingActionBar />, size: 'normal' },
+	{ id: 24, title: 'Feature Card', category: 'Cards', preview: <FeatureCard />, size: 'normal' },
+	{ id: 25, title: 'Testimonial Card', category: 'Cards', preview: <TestimonialCard />, size: 'normal' },
+	{ id: 26, title: 'Notification Bell', category: 'Buttons', preview: <NotificationBell />, size: 'normal' },
+	{ id: 27, title: 'Search Suggestions', category: 'Inputs', preview: <SearchSuggestions />, size: 'wide' },
+	{ id: 28, title: 'Pricing Toggle', category: 'Pricing', preview: <PricingToggle />, size: 'normal' }
 ]
 
 export default function ComponentsPage() {
@@ -576,7 +736,7 @@ export default function ComponentsPage() {
 			case 'large':
 				return 'md:col-span-2 md:row-span-2 h-96'
 			case 'pricing':
-				return 'md:col-span-4 lg:col-span-4 xl:col-span-4 h-80'
+				return 'md:col-span-4 lg:col-span-4 xl:col-span-4 h-[28rem]'
 			default:
 				return 'h-64'
 		}
@@ -634,12 +794,12 @@ export default function ComponentsPage() {
 						))}
 					</motion.div>
 
-					{/* Components Grid - Consistent Spacing */}
+					{/* Components Grid - Masonry Layout with Auto Fill */}
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.8, delay: 0.4 }}
-						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-min"
 					>
 						{filteredComponents.map((component, index) => (
 							<motion.div
