@@ -2,19 +2,21 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Copy, Check, Code2, Sparkles, Calendar, ChevronLeft, ChevronRight, Menu, X, Search, Heart, Star, ShoppingCart, Download, Play, Pause, Volume2, SkipBack, SkipForward, Plus, Bell, Settings, User, Mail, Phone, MapPin, Globe, Lock, Eye, EyeOff, Zap } from 'lucide-react'
+import { Copy, Check, Code2, Sparkles, Calendar, ChevronLeft, ChevronRight, Menu, X, Search, Heart, Star, ShoppingCart, Download, Play, Pause, Volume2, SkipBack, SkipForward, Plus, Bell, Settings, User, Mail, Phone, MapPin, Globe, Lock, Eye, EyeOff, Zap, Home, Folder, BarChart3, Users, MessageCircle, CreditCard, CheckCircle, Loader2, TrendingUp, DollarSign, ArrowRight, Target, Award, Shield } from 'lucide-react'
 import FloatingNavbar from '@/components/floating-navbar'
 import { Button } from '@/components/ui/button'
 
 const categories = [
 	'All',
 	'Buttons',
-	'Navigation',
+	'Navigation', 
 	'Cards',
 	'Inputs',
 	'Players',
 	'Toggles',
-	'Notifications'
+	'Notifications',
+	'Pricing',
+	'Loading'
 ]
 
 // Live Preview Components
@@ -50,6 +52,99 @@ const FloatingNav = () => (
 			</div>
 		</div>
 	</motion.nav>
+)
+
+const VerticalFloatingNav = () => (
+	<motion.nav 
+		initial={{ x: -20, opacity: 0 }}
+		animate={{ x: 0, opacity: 1 }}
+		className="py-4 px-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	>
+		<div className="flex flex-col items-center space-y-4">
+			{[Home, Search, Heart, Settings, User].map((Icon, index) => (
+				<motion.button
+					key={index}
+					whileHover={{ scale: 1.1, x: 2 }}
+					whileTap={{ scale: 0.9 }}
+					className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition-colors"
+				>
+					<Icon className="w-5 h-5" />
+				</motion.button>
+			))}
+		</div>
+	</motion.nav>
+)
+
+const SidebarNav = () => (
+	<motion.div 
+		initial={{ x: -20, opacity: 0 }}
+		animate={{ x: 0, opacity: 1 }}
+		className="w-full max-w-xs p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	>
+		<div className="space-y-3">
+			<div className="px-3 py-2">
+				<h3 className="text-white font-semibold text-sm">Navigation</h3>
+			</div>
+			{[
+				{ icon: Home, label: 'Dashboard' },
+				{ icon: BarChart3, label: 'Analytics' },
+				{ icon: Users, label: 'Team' },
+				{ icon: Folder, label: 'Projects' },
+			].map((item, index) => (
+				<motion.button
+					key={index}
+					whileHover={{ scale: 1.02, x: 4 }}
+					className="w-full flex items-center space-x-3 px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+				>
+					<item.icon className="w-4 h-4" />
+					<span className="text-sm">{item.label}</span>
+				</motion.button>
+			))}
+		</div>
+	</motion.div>
+)
+
+const PricingCard = ({ plan, price, features, highlighted = false }: {
+	plan: string
+	price: string
+	features: string[]
+	highlighted?: boolean
+}) => (
+	<motion.div 
+		whileHover={{ scale: 1.02, y: -4 }}
+		className={`p-6 backdrop-blur-xl border rounded-2xl shadow-2xl transition-all duration-300 ${
+			highlighted 
+				? 'bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-purple-500/30' 
+				: 'bg-white/5 border-white/10'
+		}`}
+	>
+		<div className="text-center mb-6">
+			<h3 className="text-xl font-bold text-white mb-2">{plan}</h3>
+			<div className="text-3xl font-bold text-white">
+				{price}
+				<span className="text-sm text-gray-400">/month</span>
+			</div>
+		</div>
+		<ul className="space-y-3 mb-6">
+			{features.map((feature, index) => (
+				<li key={index} className="flex items-center space-x-2 text-gray-300 text-sm">
+					<CheckCircle className="w-4 h-4 text-green-400" />
+					<span>{feature}</span>
+				</li>
+			))}
+		</ul>
+		<motion.button
+			whileHover={{ scale: 1.05 }}
+			whileTap={{ scale: 0.95 }}
+			className={`w-full py-3 rounded-xl font-medium transition-all duration-300 ${
+				highlighted
+					? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg hover:shadow-purple-500/25'
+					: 'bg-white/10 text-white border border-white/20 hover:bg-white/20'
+			}`}
+		>
+			Get Started
+		</motion.button>
+	</motion.div>
 )
 
 const GlassCard = () => (
@@ -332,21 +427,126 @@ const GlassModal = () => {
 	)
 }
 
+const LoadingSpinner = () => (
+	<div className="flex flex-col items-center space-y-4">
+		<motion.div
+			animate={{ rotate: 360 }}
+			transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+			className="w-12 h-12 border-4 border-white/20 border-t-purple-500 rounded-full"
+		/>
+		<p className="text-white text-sm">Loading...</p>
+	</div>
+)
+
+const PulseLoader = () => (
+	<div className="flex space-x-2">
+		{[0, 1, 2].map((i) => (
+			<motion.div
+				key={i}
+				animate={{
+					scale: [1, 1.2, 1],
+					opacity: [0.7, 1, 0.7]
+				}}
+				transition={{
+					duration: 1,
+					repeat: Infinity,
+					delay: i * 0.2
+				}}
+				className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+			/>
+		))}
+	</div>
+)
+
+const ProgressBar = () => {
+	const [progress, setProgress] = useState(65)
+	
+	return (
+		<div className="w-full">
+			<div className="flex justify-between text-white text-sm mb-2">
+				<span>Progress</span>
+				<span>{progress}%</span>
+			</div>
+			<div className="w-full bg-white/10 rounded-full h-2 backdrop-blur-xl">
+				<motion.div
+					className="h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+					initial={{ width: 0 }}
+					animate={{ width: `${progress}%` }}
+					transition={{ duration: 1.5, ease: "easeOut" }}
+				/>
+			</div>
+		</div>
+	)
+}
+
+const StatsCard = () => (
+	<motion.div 
+		whileHover={{ scale: 1.02 }}
+		className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	>
+		<div className="flex items-center justify-between mb-3">
+			<div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+				<TrendingUp className="w-5 h-5 text-white" />
+			</div>
+			<span className="text-green-400 text-sm font-medium">+12%</span>
+		</div>
+		<h3 className="text-white font-semibold text-lg">$24,500</h3>
+		<p className="text-gray-400 text-sm">Total Revenue</p>
+	</motion.div>
+)
+
+const NeumorphismButton = () => (
+	<motion.button
+		whileHover={{ scale: 1.05 }}
+		whileTap={{ scale: 0.95 }}
+		className="px-8 py-4 bg-gray-800 text-white font-medium rounded-2xl shadow-[inset_-2px_-2px_6px_rgba(255,255,255,0.1),inset_2px_2px_6px_rgba(0,0,0,0.8)] hover:shadow-[inset_-1px_-1px_3px_rgba(255,255,255,0.1),inset_1px_1px_3px_rgba(0,0,0,0.8)] transition-all duration-300"
+	>
+		Neumorphism
+	</motion.button>
+)
+
 const componentData = [
 	{ id: 1, title: 'Glassmorphism Button', category: 'Buttons', preview: <GlassmorphismButton />, size: 'normal' },
-	{ id: 3, title: 'Floating Navigation', category: 'Navigation', preview: <FloatingNav />, size: 'wide' },
-	{ id: 4, title: 'Glass Card', category: 'Cards', preview: <GlassCard />, size: 'tall' },
-	{ id: 5, title: 'Floating Search', category: 'Inputs', preview: <FloatingSearchBar />, size: 'wide' },
-	{ id: 6, title: 'Glass Toggle', category: 'Toggles', preview: <GlassmorphToggle />, size: 'normal' },
-	{ id: 7, title: 'Floating Notification', category: 'Notifications', preview: <FloatingNotification />, size: 'wide' },
-	{ id: 8, title: 'Gradient Button', category: 'Buttons', preview: <GradientButton />, size: 'normal' },
-	{ id: 9, title: 'Floating Profile', category: 'Cards', preview: <FloatingProfile />, size: 'normal' },
-	{ id: 10, title: 'Animated Counter', category: 'Buttons', preview: <AnimatedCounter />, size: 'normal' },
-	{ id: 11, title: 'Glowing Input', category: 'Inputs', preview: <GlowingInput />, size: 'wide' },
-	{ id: 12, title: 'Floating Action Button', category: 'Buttons', preview: <FloatingActionButton />, size: 'tall' },
-	{ id: 13, title: 'Password Input', category: 'Inputs', preview: <PasswordInput />, size: 'wide' },
-	{ id: 14, title: 'Audio Player', category: 'Players', preview: <AudioPlayer />, size: 'normal' },
-	{ id: 15, title: 'Glass Modal', category: 'Cards', preview: <GlassModal />, size: 'normal' }
+	{ id: 2, title: 'Floating Navigation', category: 'Navigation', preview: <FloatingNav />, size: 'wide' },
+	{ id: 3, title: 'Glass Card', category: 'Cards', preview: <GlassCard />, size: 'tall' },
+	{ id: 4, title: 'Floating Search', category: 'Inputs', preview: <FloatingSearchBar />, size: 'wide' },
+	{ id: 5, title: 'Glass Toggle', category: 'Toggles', preview: <GlassmorphToggle />, size: 'normal' },
+	{ id: 6, title: 'Floating Notification', category: 'Notifications', preview: <FloatingNotification />, size: 'wide' },
+	{ id: 7, title: 'Gradient Button', category: 'Buttons', preview: <GradientButton />, size: 'normal' },
+	{ id: 8, title: 'Floating Profile', category: 'Cards', preview: <FloatingProfile />, size: 'normal' },
+	{ id: 9, title: 'Animated Counter', category: 'Buttons', preview: <AnimatedCounter />, size: 'normal' },
+	{ id: 10, title: 'Glowing Input', category: 'Inputs', preview: <GlowingInput />, size: 'wide' },
+	{ id: 11, title: 'Floating Action Button', category: 'Buttons', preview: <FloatingActionButton />, size: 'tall' },
+	{ id: 12, title: 'Password Input', category: 'Inputs', preview: <PasswordInput />, size: 'wide' },
+	{ id: 13, title: 'Audio Player', category: 'Players', preview: <AudioPlayer />, size: 'normal' },
+	{ id: 14, title: 'Glass Modal', category: 'Cards', preview: <GlassModal />, size: 'normal' },
+	{ id: 15, title: 'Vertical Floating Nav', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'normal' },
+	{ id: 16, title: 'Sidebar Navigation', category: 'Navigation', preview: <SidebarNav />, size: 'wide' },
+	{ id: 17, title: 'Loading Spinner', category: 'Loading', preview: <LoadingSpinner />, size: 'normal' },
+	{ id: 18, title: 'Pulse Loader', category: 'Loading', preview: <PulseLoader />, size: 'normal' },
+	{ id: 19, title: 'Progress Bar', category: 'Loading', preview: <ProgressBar />, size: 'wide' },
+	{ id: 20, title: 'Stats Card', category: 'Cards', preview: <StatsCard />, size: 'normal' },
+	{ id: 21, title: 'Neumorphism Button', category: 'Buttons', preview: <NeumorphismButton />, size: 'normal' },
+	{ id: 22, title: 'Pricing Section', category: 'Pricing', preview: (
+		<div className="grid grid-cols-3 gap-4 w-full">
+			<PricingCard 
+				plan="Starter" 
+				price="$9" 
+				features={["5 Projects", "10GB Storage", "Email Support"]}
+			/>
+			<PricingCard 
+				plan="Pro" 
+				price="$29" 
+				features={["50 Projects", "100GB Storage", "Priority Support", "Advanced Analytics"]}
+				highlighted={true}
+			/>
+			<PricingCard 
+				plan="Enterprise" 
+				price="$99" 
+				features={["Unlimited Projects", "1TB Storage", "24/7 Support", "Custom Integrations"]}
+			/>
+		</div>
+	), size: 'pricing' }
 ]
 
 export default function ComponentsPage() {
@@ -375,6 +575,8 @@ export default function ComponentsPage() {
 				return 'md:row-span-2 h-96'
 			case 'large':
 				return 'md:col-span-2 md:row-span-2 h-96'
+			case 'pricing':
+				return 'md:col-span-4 lg:col-span-4 xl:col-span-4 h-80'
 			default:
 				return 'h-64'
 		}
