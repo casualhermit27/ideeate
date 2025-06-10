@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Copy, Check, Sparkles, Search, Heart, Star, Download, Play, Pause, SkipBack, SkipForward, Plus, Bell, Settings, User, Eye, EyeOff, Zap, Home, Folder, BarChart3, Users, CheckCircle, TrendingUp, Share, MoreHorizontal, Code2 } from 'lucide-react'
+import { Copy, Check, Sparkles, Search, Heart, Star, Download, Play, Pause, SkipBack, SkipForward, Plus, Bell, Settings, User, Eye, EyeOff, Zap, Home, Folder, BarChart3, Users, CheckCircle, TrendingUp, Share, MoreHorizontal, Code2, Mail, Menu, ChevronDown, X, DollarSign, ArrowRight, Loader, BarChart, Target } from 'lucide-react'
 import FloatingNavbar from '@/components/floating-navbar'
 import { Button } from '@/components/ui/button'
 
@@ -65,24 +65,24 @@ const FloatingNav = () => (
 )
 
 const VerticalFloatingNav = () => (
-	<motion.nav 
+	<motion.div 
 		initial={{ x: -20, opacity: 0 }}
 		animate={{ x: 0, opacity: 1 }}
-		className="py-4 px-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+		className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl max-w-fit"
 	>
-		<div className="flex flex-col items-center space-y-4">
-			{[Home, Search, Heart, Settings, User].map((Icon, index) => (
+		<div className="flex flex-col space-y-2">
+			{[Home, User, Settings, Bell, Mail].map((Icon, index) => (
 				<motion.button
 					key={index}
-					whileHover={{ scale: 1.1, x: 2 }}
-					whileTap={{ scale: 0.9 }}
-					className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition-colors"
+					whileHover={{ scale: 1.1, x: 4 }}
+					whileTap={{ scale: 0.95 }}
+					className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-xl transition-all"
 				>
-					<Icon className="w-5 h-5" />
+					<Icon className="w-4 h-4" />
 				</motion.button>
 			))}
 		</div>
-	</motion.nav>
+	</motion.div>
 )
 
 const SidebarNav = () => (
@@ -282,8 +282,8 @@ const AnimatedCounter = () => {
 				>
 					+
 				</motion.button>
-      </div>
     </div>
+      </div>
 	)
 }
 
@@ -331,7 +331,7 @@ const FloatingActionButton = () => {
 			>
 				<Plus className="w-6 h-6" />
 			</motion.button>
-		</div>
+    </div>
 	)
 }
 
@@ -353,7 +353,7 @@ const PasswordInput = () => {
 			>
 				{showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
 			</motion.button>
-		</div>
+  </div>
 	)
 }
 
@@ -537,14 +537,14 @@ const FloatingActionBar = () => (
 const FeatureCard = () => (
 	<motion.div 
 		whileHover={{ scale: 1.02, y: -4 }}
-		className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+		className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group max-w-xs mx-auto"
 	>
-		<div className="mb-4">
-			<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
-				<Zap className="w-6 h-6 text-white" />
+		<div className="mb-3">
+			<div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-3">
+				<Zap className="w-5 h-5 text-white" />
 			</div>
-			<h3 className="text-lg font-bold text-white mb-2">Fast Performance</h3>
-			<p className="text-gray-400 text-sm">Lightning fast loading with optimized code</p>
+			<h3 className="text-base font-bold text-white mb-1">Fast Performance</h3>
+			<p className="text-gray-400 text-xs">Lightning fast loading</p>
 		</div>
 		<motion.div 
 			className="w-full h-1 bg-white/10 rounded-full overflow-hidden"
@@ -562,21 +562,21 @@ const FeatureCard = () => (
 const TestimonialCard = () => (
 	<motion.div 
 		whileHover={{ scale: 1.02 }}
-		className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+		className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl max-w-xs mx-auto"
 	>
-		<div className="flex items-center space-x-1 mb-4">
+		<div className="flex items-center space-x-1 mb-3">
 			{[...Array(5)].map((_, i) => (
-				<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+				<Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
 			))}
 		</div>
-		<p className="text-gray-300 text-sm mb-4">&quot;Amazing components with beautiful animations. Saved me hours of development time!&quot;</p>
-		<div className="flex items-center space-x-3">
-			<div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-				<User className="w-5 h-5 text-white" />
+		<p className="text-gray-300 text-xs mb-3 line-clamp-2">&quot;Amazing components with beautiful animations!&quot;</p>
+		<div className="flex items-center space-x-2">
+			<div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+				<User className="w-4 h-4 text-white" />
 			</div>
 			<div>
-				<p className="text-white text-sm font-medium">Sarah Chen</p>
-				<p className="text-gray-400 text-xs">Frontend Developer</p>
+				<p className="text-white text-xs font-medium">Sarah Chen</p>
+				<p className="text-gray-400 text-[10px]">Frontend Developer</p>
 			</div>
 		</div>
 	</motion.div>
@@ -610,19 +610,19 @@ const SearchSuggestions = () => (
 	<motion.div 
 		initial={{ y: -10, opacity: 0 }}
 		animate={{ y: 0, opacity: 1 }}
-		className="w-full max-w-sm bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+		className="w-full max-w-xs bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
 	>
-		<div className="p-4">
-			<h4 className="text-white font-medium text-sm mb-3">Recent Searches</h4>
-			<div className="space-y-2">
+		<div className="p-3">
+			<h4 className="text-white font-medium text-xs mb-2">Recent Searches</h4>
+			<div className="space-y-1">
 				{['React Components', 'Glassmorphism UI', 'Animation Library'].map((item, index) => (
 					<motion.button
 						key={index}
 						whileHover={{ scale: 1.02, x: 4 }}
-						className="w-full flex items-center space-x-3 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
+						className="w-full flex items-center space-x-2 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
 					>
-						<Search className="w-4 h-4" />
-						<span className="text-sm">{item}</span>
+						<Search className="w-3 h-3" />
+						<span className="text-xs">{item}</span>
 					</motion.button>
 				))}
 			</div>
@@ -926,29 +926,29 @@ const componentData: ComponentType[] = [
 					className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-colors"
 				>
 					Close
-				</button>
+  </button>
 			</motion.div>
 		</motion.div>
 	)}
 </>` },
-	{ id: 15, title: 'Nebula', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'normal', code: `<motion.nav 
+	{ id: 15, title: 'Nebula', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'normal', code: `<motion.div 
 	initial={{ x: -20, opacity: 0 }}
 	animate={{ x: 0, opacity: 1 }}
-	className="py-4 px-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl max-w-fit"
 >
-	<div className="flex flex-col items-center space-y-4">
-		{[Home, Search, Heart, Settings, User].map((Icon, index) => (
+	<div className="flex flex-col space-y-2">
+		{[Home, User, Settings, Bell, Mail].map((Icon, index) => (
 			<motion.button
 				key={index}
-				whileHover={{ scale: 1.1, x: 2 }}
-				whileTap={{ scale: 0.9 }}
-				className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition-colors"
+				whileHover={{ scale: 1.1, x: 4 }}
+				whileTap={{ scale: 0.95 }}
+				className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-xl transition-all"
 			>
-				<Icon className="w-5 h-5" />
+				<Icon className="w-4 h-4" />
 			</motion.button>
 		))}
 	</div>
-</motion.nav>` },
+</motion.div>` },
 	{ id: 16, title: 'Matrix', category: 'Navigation', preview: <SidebarNav />, size: 'wide', code: `<motion.div 
 	initial={{ x: -20, opacity: 0 }}
 	animate={{ x: 0, opacity: 1 }}
@@ -1093,14 +1093,14 @@ const componentData: ComponentType[] = [
 </motion.div>` },
 	{ id: 24, title: 'Bloom', category: 'Cards', preview: <FeatureCard />, size: 'normal', code: `<motion.div 
 	whileHover={{ scale: 1.02, y: -4 }}
-	className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+	className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group max-w-xs mx-auto"
 >
-	<div className="mb-4">
-		<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
-			<Zap className="w-6 h-6 text-white" />
+	<div className="mb-3">
+		<div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-3">
+			<Zap className="w-5 h-5 text-white" />
 		</div>
-		<h3 className="text-lg font-bold text-white mb-2">Fast Performance</h3>
-		<p className="text-gray-400 text-sm">Lightning fast loading with optimized code</p>
+		<h3 className="text-base font-bold text-white mb-1">Fast Performance</h3>
+		<p className="text-gray-400 text-xs">Lightning fast loading</p>
 	</div>
 	<motion.div 
 		className="w-full h-1 bg-white/10 rounded-full overflow-hidden"
@@ -1115,21 +1115,21 @@ const componentData: ComponentType[] = [
 </motion.div>` },
 	{ id: 25, title: 'Wisp', category: 'Cards', preview: <TestimonialCard />, size: 'normal', code: `<motion.div 
 	whileHover={{ scale: 1.02 }}
-	className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl max-w-xs mx-auto"
 >
-	<div className="flex items-center space-x-1 mb-4">
+	<div className="flex items-center space-x-1 mb-3">
 		{[...Array(5)].map((_, i) => (
-			<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+			<Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
 		))}
 	</div>
-	<p className="text-gray-300 text-sm mb-4">&quot;Amazing components with beautiful animations. Saved me hours of development time!&quot;</p>
-	<div className="flex items-center space-x-3">
-		<div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-			<User className="w-5 h-5 text-white" />
+	<p className="text-gray-300 text-xs mb-3 line-clamp-2">&quot;Amazing components with beautiful animations!&quot;</p>
+	<div className="flex items-center space-x-2">
+		<div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+			<User className="w-4 h-4 text-white" />
 		</div>
 		<div>
-			<p className="text-white text-sm font-medium">Sarah Chen</p>
-			<p className="text-gray-400 text-xs">Frontend Developer</p>
+			<p className="text-white text-xs font-medium">Sarah Chen</p>
+			<p className="text-gray-400 text-[10px]">Frontend Developer</p>
 		</div>
 	</div>
 </motion.div>` },
@@ -1164,7 +1164,7 @@ const componentData: ComponentType[] = [
 				<motion.button
 					key={index}
 					whileHover={{ scale: 1.02, x: 4 }}
-					className="w-full flex items-center space-x-3 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
+					className="w-full flex items-center space-x-2 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
 				>
 					<Search className="w-4 h-4" />
 					<span className="text-sm">{item}</span>
@@ -1341,23 +1341,25 @@ export default function ComponentsPage() {
 											whileTap={{ scale: 0.95 }}
 											className="p-2 bg-black/40 hover:bg-black/60 rounded-lg transition-all duration-200 backdrop-blur-sm"
 											title="Copy Name"
-										>
-											{copiedId === component.id ? (
+											>
+												{copiedId === component.id ? (
 												<Check className="w-4 h-4 text-green-400" />
-											) : (
+												) : (
 												<Copy className="w-4 h-4 text-white/60 hover:text-white" />
-											)}
+												)}
 										</motion.button>
 									</div>
 
 									{/* Component Preview - Center */}
-									<div className="flex-1 flex items-center justify-center p-6">
-										{component.preview}
+									<div className="flex-1 flex items-center justify-center p-4 pb-2 overflow-hidden">
+										<div className="max-w-full max-h-full flex items-center justify-center">
+											{component.preview}
+										</div>
 									</div>
 									
-									{/* Component Name - Bottom */}
-									<div className="p-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
-										<h3 className="text-sm font-semibold text-white text-center">{component.title}</h3>
+									{/* Component Name - Bottom - Always Visible */}
+									<div className="mt-auto p-3 bg-black/40 backdrop-blur-md border-t border-white/20">
+										<h3 className="text-sm font-bold text-white text-center truncate">{component.title}</h3>
 									</div>
 								</div>
 							</motion.div>
