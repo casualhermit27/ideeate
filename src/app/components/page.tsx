@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 const categories = [
 	'All',
 	'Buttons',
-	'Navigation', 
+	'Navigation',
 	'Cards',
 	'Inputs',
 	'Players',
@@ -25,18 +25,6 @@ const GlassmorphismButton = () => (
 		className="px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium shadow-2xl hover:shadow-white/25 transition-all duration-300"
 	>
 		<span>Glassmorphism</span>
-	</motion.button>
-)
-
-const NeonGlowButton = () => (
-	<motion.button 
-		whileHover={{ scale: 1.05 }}
-		whileTap={{ scale: 0.95 }}
-		className="relative px-8 py-4 bg-black border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg overflow-hidden group hover:text-black transition-colors duration-300"
-	>
-		<span className="absolute inset-0 bg-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-		<span className="relative z-10">NEON GLOW</span>
-		<div className="absolute inset-0 rounded-lg shadow-[0_0_20px_#00ffff,0_0_40px_#00ffff,0_0_60px_#00ffff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 	</motion.button>
 )
 
@@ -207,14 +195,14 @@ const FloatingActionButton = () => {
 	const [isExpanded, setIsExpanded] = useState(false)
 	
 	return (
-		<div className="relative">
+		<div className="relative h-full flex flex-col items-center justify-center">
 			<motion.div
 				animate={isExpanded ? "expanded" : "collapsed"}
 				variants={{
 					expanded: { scale: 1, opacity: 1 },
 					collapsed: { scale: 0, opacity: 0 }
 				}}
-				className="absolute bottom-16 right-0 space-y-2"
+				className="space-y-3 mb-4"
 			>
 				{[Heart, Star, Settings].map((Icon, index) => (
 					<motion.button
@@ -269,7 +257,7 @@ const AudioPlayer = () => {
 	
 	return (
 		<motion.div 
-			className="p-4 bg-black/40 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl"
+			className="p-4 bg-black/40 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl w-full max-w-xs"
 		>
 			<div className="flex items-center space-x-3 mb-3">
 				<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
@@ -345,21 +333,20 @@ const GlassModal = () => {
 }
 
 const componentData = [
-	{ id: 1, title: 'Glassmorphism Button', category: 'Buttons', preview: <GlassmorphismButton /> },
-	{ id: 2, title: 'Neon Glow Button', category: 'Buttons', preview: <NeonGlowButton /> },
-	{ id: 3, title: 'Floating Navigation', category: 'Navigation', preview: <FloatingNav /> },
-	{ id: 4, title: 'Glass Card', category: 'Cards', preview: <GlassCard /> },
-	{ id: 5, title: 'Floating Search', category: 'Inputs', preview: <FloatingSearchBar /> },
-	{ id: 6, title: 'Glass Toggle', category: 'Toggles', preview: <GlassmorphToggle /> },
-	{ id: 7, title: 'Floating Notification', category: 'Notifications', preview: <FloatingNotification /> },
-	{ id: 8, title: 'Gradient Button', category: 'Buttons', preview: <GradientButton /> },
-	{ id: 9, title: 'Floating Profile', category: 'Cards', preview: <FloatingProfile /> },
-	{ id: 10, title: 'Animated Counter', category: 'Buttons', preview: <AnimatedCounter /> },
-	{ id: 11, title: 'Glowing Input', category: 'Inputs', preview: <GlowingInput /> },
-	{ id: 12, title: 'Floating Action Button', category: 'Buttons', preview: <FloatingActionButton /> },
-	{ id: 13, title: 'Password Input', category: 'Inputs', preview: <PasswordInput /> },
-	{ id: 14, title: 'Audio Player', category: 'Players', preview: <AudioPlayer /> },
-	{ id: 15, title: 'Glass Modal', category: 'Cards', preview: <GlassModal /> }
+	{ id: 1, title: 'Glassmorphism Button', category: 'Buttons', preview: <GlassmorphismButton />, size: 'normal' },
+	{ id: 3, title: 'Floating Navigation', category: 'Navigation', preview: <FloatingNav />, size: 'wide' },
+	{ id: 4, title: 'Glass Card', category: 'Cards', preview: <GlassCard />, size: 'tall' },
+	{ id: 5, title: 'Floating Search', category: 'Inputs', preview: <FloatingSearchBar />, size: 'wide' },
+	{ id: 6, title: 'Glass Toggle', category: 'Toggles', preview: <GlassmorphToggle />, size: 'normal' },
+	{ id: 7, title: 'Floating Notification', category: 'Notifications', preview: <FloatingNotification />, size: 'wide' },
+	{ id: 8, title: 'Gradient Button', category: 'Buttons', preview: <GradientButton />, size: 'normal' },
+	{ id: 9, title: 'Floating Profile', category: 'Cards', preview: <FloatingProfile />, size: 'normal' },
+	{ id: 10, title: 'Animated Counter', category: 'Buttons', preview: <AnimatedCounter />, size: 'normal' },
+	{ id: 11, title: 'Glowing Input', category: 'Inputs', preview: <GlowingInput />, size: 'wide' },
+	{ id: 12, title: 'Floating Action Button', category: 'Buttons', preview: <FloatingActionButton />, size: 'tall' },
+	{ id: 13, title: 'Password Input', category: 'Inputs', preview: <PasswordInput />, size: 'wide' },
+	{ id: 14, title: 'Audio Player', category: 'Players', preview: <AudioPlayer />, size: 'normal' },
+	{ id: 15, title: 'Glass Modal', category: 'Cards', preview: <GlassModal />, size: 'normal' }
 ]
 
 export default function ComponentsPage() {
@@ -377,6 +364,19 @@ export default function ComponentsPage() {
 			setTimeout(() => setCopiedId(null), 2000)
 		} catch (err) {
 			console.error('Failed to copy: ', err)
+		}
+	}
+
+	const getComponentSize = (size: string) => {
+		switch (size) {
+			case 'wide':
+				return 'md:col-span-2 h-48'
+			case 'tall':
+				return 'md:row-span-2 h-96'
+			case 'large':
+				return 'md:col-span-2 md:row-span-2 h-96'
+			default:
+				return 'h-48'
 		}
 	}
 
@@ -432,12 +432,12 @@ export default function ComponentsPage() {
 						))}
 					</motion.div>
 
-					{/* Components Grid */}
+					{/* Components Grid - Masonry Style */}
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.8, delay: 0.4 }}
-						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-max"
 					>
 						{filteredComponents.map((component, index) => (
 							<motion.div
@@ -445,29 +445,30 @@ export default function ComponentsPage() {
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.5, delay: 0.05 * index }}
-								className="group bg-card border border-border rounded-xl overflow-hidden hover:border-border/60 transition-all duration-300"
+								className={`group bg-card border border-border rounded-xl overflow-hidden hover:border-border/60 transition-all duration-300 ${getComponentSize(component.size)}`}
 							>
 								{/* Component Preview - Full Card */}
-								<div className="h-48 bg-gradient-to-br from-gray-900 via-black to-gray-900 p-6 flex flex-col items-center justify-center group-hover:from-gray-800 group-hover:via-gray-900 group-hover:to-gray-800 transition-all duration-300">
+								<div className="h-full bg-gradient-to-br from-gray-900 via-black to-gray-900 p-6 flex flex-col items-center justify-center group-hover:from-gray-800 group-hover:via-gray-900 group-hover:to-gray-800 transition-all duration-300 relative">
 									{component.preview}
-								</div>
-								
-								{/* Component Name & Copy */}
-								<div className="p-4 bg-card flex items-center justify-between">
-									<h3 className="text-sm font-medium text-foreground">{component.title}</h3>
 									
+									{/* Copy Button - Positioned in corner */}
 									<motion.button
 										onClick={() => copyToClipboard(component.title, component.id)}
 										whileHover={{ scale: 1.05 }}
 										whileTap={{ scale: 0.95 }}
-										className="p-2 bg-muted hover:bg-accent rounded-lg transition-all duration-200"
+										className="absolute top-4 right-4 p-2 bg-black/40 hover:bg-black/60 rounded-lg transition-all duration-200 backdrop-blur-sm"
 									>
 										{copiedId === component.id ? (
-											<Check className="w-4 h-4 text-green-500" />
+											<Check className="w-4 h-4 text-green-400" />
 										) : (
-											<Copy className="w-4 h-4 text-muted-foreground" />
+											<Copy className="w-4 h-4 text-white/60 hover:text-white" />
 										)}
 									</motion.button>
+								</div>
+								
+								{/* Component Name */}
+								<div className="p-4 bg-card">
+									<h3 className="text-sm font-medium text-foreground text-center">{component.title}</h3>
 								</div>
 							</motion.div>
 						))}
