@@ -16,7 +16,8 @@ const categories = [
 	'Toggles',
 	'Notifications',
 	'Pricing',
-	'Loading'
+	'Loading',
+	'Logo'
 ]
 
 // Component type definition
@@ -635,39 +636,56 @@ const PricingToggle = () => {
 	
 	return (
 		<motion.div 
-			className="flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
+			className="flex items-center justify-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
 		>
-			<span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
+			<span className={`text-sm transition-colors ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
 				Monthly
 			</span>
 			<motion.button
 				onClick={() => setIsYearly(!isYearly)}
-				className={`relative w-14 h-7 rounded-full transition-all duration-300 ${
-					isYearly ? 'bg-purple-500' : 'bg-white/20'
-				}`}
+				className="relative w-12 h-6 bg-white/20 rounded-full p-1 transition-colors"
 				whileTap={{ scale: 0.95 }}
 			>
 				<motion.div
-					className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
-					animate={{ x: isYearly ? 28 : 4 }}
-					transition={{ type: "spring", stiffness: 500, damping: 30 }}
+					className="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg"
+					animate={{ x: isYearly ? 24 : 0 }}
+					transition={{ type: "spring", stiffness: 300, damping: 30 }}
 				/>
 			</motion.button>
-			<span className={`text-sm font-medium transition-colors ${isYearly ? 'text-white' : 'text-gray-400'}`}>
+			<span className={`text-sm transition-colors ${isYearly ? 'text-white' : 'text-gray-400'}`}>
 				Yearly
 			</span>
 			{isYearly && (
 				<motion.span 
-					initial={{ scale: 0, opacity: 0 }}
-					animate={{ scale: 1, opacity: 1 }}
-					className="px-2 py-1 bg-green-500 text-white text-xs rounded-full font-bold"
+					initial={{ opacity: 0, scale: 0.8 }}
+					animate={{ opacity: 1, scale: 1 }}
+					className="text-xs text-green-400 font-medium"
 				>
-					20% OFF
+					Save 20%
 				</motion.span>
 			)}
 		</motion.div>
 	)
 }
+
+const LogoPlaceholder = () => (
+	<motion.div 
+		whileHover={{ scale: 1.02 }}
+		className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+	>
+		<motion.div 
+			whileHover={{ rotate: 180 }}
+			transition={{ duration: 0.6 }}
+			className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
+		>
+			<motion.div 
+				className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
+				whileHover={{ scale: 1.1 }}
+				transition={{ duration: 0.3 }}
+			/>
+		</motion.div>
+	</motion.div>
+)
 
 const componentData: ComponentType[] = [
 	{ id: 1, title: 'Prism', category: 'Buttons', preview: <GlassmorphismButton />, size: 'normal', code: `<motion.button 
@@ -1173,37 +1191,133 @@ const componentData: ComponentType[] = [
 		</div>
 	</div>
 </motion.div>` },
-	{ id: 28, title: 'Flux', category: 'Pricing', preview: <PricingToggle />, size: 'normal', code: `const [isYearly, setIsYearly] = useState(false)
+	{ id: 28, title: 'Switch', category: 'Inputs', preview: <PricingToggle />, size: 'normal', code: `const [isYearly, setIsYearly] = useState(false)
 
 <motion.div 
-	className="flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
+	className="flex items-center justify-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
 >
-	<span className={\`text-sm font-medium transition-colors \${!isYearly ? 'text-white' : 'text-gray-400'}\`}>
+	<span className={\`text-sm transition-colors \${!isYearly ? 'text-white' : 'text-gray-400'}\`}>
 		Monthly
 	</span>
 	<motion.button
 		onClick={() => setIsYearly(!isYearly)}
-		className={\`relative w-14 h-7 rounded-full transition-all duration-300 \${isYearly ? 'bg-purple-500' : 'bg-white/20'}\`}
+		className="relative w-12 h-6 bg-white/20 rounded-full p-1 transition-colors"
 		whileTap={{ scale: 0.95 }}
 	>
 		<motion.div
-			className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
-			animate={{ x: isYearly ? 28 : 4 }}
-			transition={{ type: "spring", stiffness: 500, damping: 30 }}
+			className="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg"
+			animate={{ x: isYearly ? 24 : 0 }}
+			transition={{ type: "spring", stiffness: 300, damping: 30 }}
 		/>
 	</motion.button>
-	<span className={\`text-sm font-medium transition-colors \${isYearly ? 'text-white' : 'text-gray-400'}\`}>
+	<span className={\`text-sm transition-colors \${isYearly ? 'text-white' : 'text-gray-400'}\`}>
 		Yearly
 	</span>
 	{isYearly && (
 		<motion.span 
-			initial={{ scale: 0, opacity: 0 }}
-			animate={{ scale: 1, opacity: 1 }}
-			className="px-2 py-1 bg-green-500 text-white text-xs rounded-full font-bold"
+			initial={{ opacity: 0, scale: 0.8 }}
+			animate={{ opacity: 1, scale: 1 }}
+			className="text-xs text-green-400 font-medium"
 		>
-			20% OFF
+			Save 20%
 		</motion.span>
 	)}
+</motion.div>` },
+	{ id: 29, title: 'Void', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
+	whileHover={{ scale: 1.02 }}
+	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+>
+	<motion.div 
+		whileHover={{ rotate: 180 }}
+		transition={{ duration: 0.6 }}
+		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
+	>
+		<motion.div 
+			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
+			whileHover={{ scale: 1.1 }}
+			transition={{ duration: 0.3 }}
+		/>
+	</motion.div>
+</motion.div>` },
+	{ id: 30, title: 'Glow', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
+	whileHover={{ scale: 1.02 }}
+	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+>
+	<motion.div 
+		whileHover={{ rotate: 180 }}
+		transition={{ duration: 0.6 }}
+		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
+	>
+		<motion.div 
+			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
+			whileHover={{ scale: 1.1 }}
+			transition={{ duration: 0.3 }}
+		/>
+	</motion.div>
+</motion.div>` },
+	{ id: 31, title: 'Mist', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
+	whileHover={{ scale: 1.02 }}
+	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+>
+	<motion.div 
+		whileHover={{ rotate: 180 }}
+		transition={{ duration: 0.6 }}
+		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
+	>
+		<motion.div 
+			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
+			whileHover={{ scale: 1.1 }}
+			transition={{ duration: 0.3 }}
+		/>
+	</motion.div>
+</motion.div>` },
+	{ id: 32, title: 'Shade', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
+	whileHover={{ scale: 1.02 }}
+	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+>
+	<motion.div 
+		whileHover={{ rotate: 180 }}
+		transition={{ duration: 0.6 }}
+		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
+	>
+		<motion.div 
+			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
+			whileHover={{ scale: 1.1 }}
+			transition={{ duration: 0.3 }}
+		/>
+	</motion.div>
+</motion.div>` },
+	{ id: 33, title: 'Echo', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
+	whileHover={{ scale: 1.02 }}
+	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+>
+	<motion.div 
+		whileHover={{ rotate: 180 }}
+		transition={{ duration: 0.6 }}
+		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
+	>
+		<motion.div 
+			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
+			whileHover={{ scale: 1.1 }}
+			transition={{ duration: 0.3 }}
+		/>
+	</motion.div>
+</motion.div>` },
+	{ id: 34, title: 'Blur', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
+	whileHover={{ scale: 1.02 }}
+	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
+>
+	<motion.div 
+		whileHover={{ rotate: 180 }}
+		transition={{ duration: 0.6 }}
+		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
+	>
+		<motion.div 
+			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
+			whileHover={{ scale: 1.1 }}
+			transition={{ duration: 0.3 }}
+		/>
+	</motion.div>
 </motion.div>` }
 ]
 
