@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Copy, Check, Sparkles, Search, Heart, Star, Download, Play, Pause, SkipBack, SkipForward, Plus, Bell, Settings, User, Eye, EyeOff, Zap, Home, Folder, BarChart3, Users, CheckCircle, TrendingUp, Share, MoreHorizontal, Code2, Mail, Menu, ChevronDown, X, DollarSign, ArrowRight, Loader, BarChart, Target } from 'lucide-react'
+import { Copy, Check, Sparkles, Search, Heart, Star, Download, Play, Pause, SkipBack, SkipForward, Plus, Bell, Settings, User, Eye, EyeOff, Zap, Home, Folder, BarChart3, Users, CheckCircle, TrendingUp, Share, MoreHorizontal, Code2 } from 'lucide-react'
 import FloatingNavbar from '@/components/floating-navbar'
 import { Button } from '@/components/ui/button'
 
@@ -16,8 +16,7 @@ const categories = [
 	'Toggles',
 	'Notifications',
 	'Pricing',
-	'Loading',
-	'Logo'
+	'Loading'
 ]
 
 // Component type definition
@@ -66,24 +65,24 @@ const FloatingNav = () => (
 )
 
 const VerticalFloatingNav = () => (
-	<motion.div 
+	<motion.nav 
 		initial={{ x: -20, opacity: 0 }}
 		animate={{ x: 0, opacity: 1 }}
-		className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl max-w-fit"
+		className="py-4 px-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
 	>
-		<div className="flex flex-col space-y-2">
-			{[Home, User, Settings, Bell, Mail].map((Icon, index) => (
+		<div className="flex flex-col items-center space-y-4">
+			{[Home, Search, Heart, Settings, User].map((Icon, index) => (
 				<motion.button
 					key={index}
-					whileHover={{ scale: 1.1, x: 4 }}
-					whileTap={{ scale: 0.95 }}
-					className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+					whileHover={{ scale: 1.1, x: 2 }}
+					whileTap={{ scale: 0.9 }}
+					className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition-colors"
 				>
-					<Icon className="w-4 h-4" />
+					<Icon className="w-5 h-5" />
 				</motion.button>
 			))}
 		</div>
-	</motion.div>
+	</motion.nav>
 )
 
 const SidebarNav = () => (
@@ -538,14 +537,14 @@ const FloatingActionBar = () => (
 const FeatureCard = () => (
 	<motion.div 
 		whileHover={{ scale: 1.02, y: -4 }}
-		className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group max-w-xs mx-auto"
+		className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
 	>
-		<div className="mb-3">
-			<div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-3">
-				<Zap className="w-5 h-5 text-white" />
+		<div className="mb-4">
+			<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
+				<Zap className="w-6 h-6 text-white" />
 			</div>
-			<h3 className="text-base font-bold text-white mb-1">Fast Performance</h3>
-			<p className="text-gray-400 text-xs">Lightning fast loading</p>
+			<h3 className="text-lg font-bold text-white mb-2">Fast Performance</h3>
+			<p className="text-gray-400 text-sm">Lightning fast loading with optimized code</p>
 		</div>
 		<motion.div 
 			className="w-full h-1 bg-white/10 rounded-full overflow-hidden"
@@ -563,23 +562,23 @@ const FeatureCard = () => (
 const TestimonialCard = () => (
 	<motion.div 
 		whileHover={{ scale: 1.02 }}
-		className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl max-w-xs mx-auto"
+		className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
 	>
-		<div className="flex items-center space-x-1 mb-3">
+		<div className="flex items-center space-x-1 mb-4">
 			{[...Array(5)].map((_, i) => (
-				<Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+				<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
 			))}
 		</div>
-		<p className="text-gray-300 text-xs mb-3 line-clamp-2">&quot;Amazing components with beautiful animations!&quot;</p>
-		<div className="flex items-center space-x-2">
-			<div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-				<User className="w-4 h-4 text-white" />
+		<p className="text-gray-300 text-sm mb-4">&quot;Amazing components with beautiful animations. Saved me hours of development time!&quot;</p>
+		<div className="flex items-center space-x-3">
+			<div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+				<User className="w-5 h-5 text-white" />
 			</div>
-			<div>
-				<p className="text-white text-xs font-medium">Sarah Chen</p>
-				<p className="text-gray-400 text-[10px]">Frontend Developer</p>
-			</div>
-		</div>
+  <div>
+				<p className="text-white text-sm font-medium">Sarah Chen</p>
+				<p className="text-gray-400 text-xs">Frontend Developer</p>
+  </div>
+  </div>
 	</motion.div>
 )
 
@@ -611,19 +610,19 @@ const SearchSuggestions = () => (
 	<motion.div 
 		initial={{ y: -10, opacity: 0 }}
 		animate={{ y: 0, opacity: 1 }}
-		className="w-full max-w-xs bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+		className="w-full max-w-sm bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
 	>
-		<div className="p-3">
-			<h4 className="text-white font-medium text-xs mb-2">Recent Searches</h4>
-			<div className="space-y-1">
+		<div className="p-4">
+			<h4 className="text-white font-medium text-sm mb-3">Recent Searches</h4>
+			<div className="space-y-2">
 				{['React Components', 'Glassmorphism UI', 'Animation Library'].map((item, index) => (
 					<motion.button
 						key={index}
 						whileHover={{ scale: 1.02, x: 4 }}
-						className="w-full flex items-center space-x-2 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
+						className="w-full flex items-center space-x-3 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
 					>
-						<Search className="w-3 h-3" />
-						<span className="text-xs">{item}</span>
+						<Search className="w-4 h-4" />
+						<span className="text-sm">{item}</span>
 					</motion.button>
 				))}
 			</div>
@@ -636,56 +635,39 @@ const PricingToggle = () => {
 	
 	return (
 		<motion.div 
-			className="flex items-center justify-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
+			className="flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
 		>
-			<span className={`text-sm transition-colors ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
+			<span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
 				Monthly
 			</span>
 			<motion.button
 				onClick={() => setIsYearly(!isYearly)}
-				className="relative w-12 h-6 bg-white/20 rounded-full p-1 transition-colors"
+				className={`relative w-14 h-7 rounded-full transition-all duration-300 ${
+					isYearly ? 'bg-purple-500' : 'bg-white/20'
+				}`}
 				whileTap={{ scale: 0.95 }}
 			>
 				<motion.div
-					className="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg"
-					animate={{ x: isYearly ? 24 : 0 }}
-					transition={{ type: "spring", stiffness: 300, damping: 30 }}
+					className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
+					animate={{ x: isYearly ? 28 : 4 }}
+					transition={{ type: "spring", stiffness: 500, damping: 30 }}
 				/>
 			</motion.button>
-			<span className={`text-sm transition-colors ${isYearly ? 'text-white' : 'text-gray-400'}`}>
+			<span className={`text-sm font-medium transition-colors ${isYearly ? 'text-white' : 'text-gray-400'}`}>
 				Yearly
 			</span>
 			{isYearly && (
 				<motion.span 
-					initial={{ opacity: 0, scale: 0.8 }}
-					animate={{ opacity: 1, scale: 1 }}
-					className="text-xs text-green-400 font-medium"
+					initial={{ scale: 0, opacity: 0 }}
+					animate={{ scale: 1, opacity: 1 }}
+					className="px-2 py-1 bg-green-500 text-white text-xs rounded-full font-bold"
 				>
-					Save 20%
+					20% OFF
 				</motion.span>
 			)}
 		</motion.div>
 	)
 }
-
-const LogoPlaceholder = () => (
-	<motion.div 
-		whileHover={{ scale: 1.02 }}
-		className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
-	>
-		<motion.div 
-			whileHover={{ rotate: 180 }}
-			transition={{ duration: 0.6 }}
-			className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
-		>
-			<motion.div 
-				className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
-				whileHover={{ scale: 1.1 }}
-				transition={{ duration: 0.3 }}
-			/>
-		</motion.div>
-	</motion.div>
-)
 
 const componentData: ComponentType[] = [
 	{ id: 1, title: 'Prism', category: 'Buttons', preview: <GlassmorphismButton />, size: 'normal', code: `<motion.button 
@@ -949,24 +931,24 @@ const componentData: ComponentType[] = [
 		</motion.div>
 	)}
 </>` },
-	{ id: 15, title: 'Nebula', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'normal', code: `<motion.div 
+	{ id: 15, title: 'Nebula', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'normal', code: `<motion.nav 
 	initial={{ x: -20, opacity: 0 }}
 	animate={{ x: 0, opacity: 1 }}
-	className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl max-w-fit"
+	className="py-4 px-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
 >
-	<div className="flex flex-col space-y-2">
-		{[Home, User, Settings, Bell, Mail].map((Icon, index) => (
+	<div className="flex flex-col items-center space-y-4">
+		{[Home, Search, Heart, Settings, User].map((Icon, index) => (
 			<motion.button
 				key={index}
-				whileHover={{ scale: 1.1, x: 4 }}
-				whileTap={{ scale: 0.95 }}
-				className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+				whileHover={{ scale: 1.1, x: 2 }}
+				whileTap={{ scale: 0.9 }}
+				className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition-colors"
 			>
-				<Icon className="w-4 h-4" />
+				<Icon className="w-5 h-5" />
 			</motion.button>
 		))}
 	</div>
-</motion.div>` },
+</motion.nav>` },
 	{ id: 16, title: 'Matrix', category: 'Navigation', preview: <SidebarNav />, size: 'wide', code: `<motion.div 
 	initial={{ x: -20, opacity: 0 }}
 	animate={{ x: 0, opacity: 1 }}
@@ -1111,14 +1093,14 @@ const componentData: ComponentType[] = [
 </motion.div>` },
 	{ id: 24, title: 'Bloom', category: 'Cards', preview: <FeatureCard />, size: 'normal', code: `<motion.div 
 	whileHover={{ scale: 1.02, y: -4 }}
-	className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group max-w-xs mx-auto"
+	className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
 >
-	<div className="mb-3">
-		<div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-3">
-			<Zap className="w-5 h-5 text-white" />
+	<div className="mb-4">
+		<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
+			<Zap className="w-6 h-6 text-white" />
 		</div>
-		<h3 className="text-base font-bold text-white mb-1">Fast Performance</h3>
-		<p className="text-gray-400 text-xs">Lightning fast loading</p>
+		<h3 className="text-lg font-bold text-white mb-2">Fast Performance</h3>
+		<p className="text-gray-400 text-sm">Lightning fast loading with optimized code</p>
 	</div>
 	<motion.div 
 		className="w-full h-1 bg-white/10 rounded-full overflow-hidden"
@@ -1133,21 +1115,21 @@ const componentData: ComponentType[] = [
 </motion.div>` },
 	{ id: 25, title: 'Wisp', category: 'Cards', preview: <TestimonialCard />, size: 'normal', code: `<motion.div 
 	whileHover={{ scale: 1.02 }}
-	className="p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl max-w-xs mx-auto"
+	className="p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
 >
-	<div className="flex items-center space-x-1 mb-3">
+	<div className="flex items-center space-x-1 mb-4">
 		{[...Array(5)].map((_, i) => (
-			<Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+			<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
 		))}
 	</div>
-	<p className="text-gray-300 text-xs mb-3 line-clamp-2">&quot;Amazing components with beautiful animations!&quot;</p>
-	<div className="flex items-center space-x-2">
-		<div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-			<User className="w-4 h-4 text-white" />
+	<p className="text-gray-300 text-sm mb-4">&quot;Amazing components with beautiful animations. Saved me hours of development time!&quot;</p>
+	<div className="flex items-center space-x-3">
+		<div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+			<User className="w-5 h-5 text-white" />
 		</div>
 		<div>
-			<p className="text-white text-xs font-medium">Sarah Chen</p>
-			<p className="text-gray-400 text-[10px]">Frontend Developer</p>
+			<p className="text-white text-sm font-medium">Sarah Chen</p>
+			<p className="text-gray-400 text-xs">Frontend Developer</p>
 		</div>
 	</div>
 </motion.div>` },
@@ -1177,147 +1159,51 @@ const componentData: ComponentType[] = [
 >
 	<div className="p-4">
 		<h4 className="text-white font-medium text-sm mb-3">Recent Searches</h4>
-		<div className="space-y-2">
+  <div className="space-y-2">
 			{['React Components', 'Glassmorphism UI', 'Animation Library'].map((item, index) => (
 				<motion.button
 					key={index}
 					whileHover={{ scale: 1.02, x: 4 }}
-					className="w-full flex items-center space-x-2 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
+					className="w-full flex items-center space-x-3 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all text-left"
 				>
 					<Search className="w-4 h-4" />
 					<span className="text-sm">{item}</span>
 				</motion.button>
 			))}
-		</div>
-	</div>
+    </div>
+  </div>
 </motion.div>` },
-	{ id: 28, title: 'Switch', category: 'Inputs', preview: <PricingToggle />, size: 'normal', code: `const [isYearly, setIsYearly] = useState(false)
+	{ id: 28, title: 'Flux', category: 'Pricing', preview: <PricingToggle />, size: 'normal', code: `const [isYearly, setIsYearly] = useState(false)
 
 <motion.div 
-	className="flex items-center justify-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
+	className="flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
 >
-	<span className={\`text-sm transition-colors \${!isYearly ? 'text-white' : 'text-gray-400'}\`}>
+	<span className={\`text-sm font-medium transition-colors \${!isYearly ? 'text-white' : 'text-gray-400'}\`}>
 		Monthly
 	</span>
 	<motion.button
 		onClick={() => setIsYearly(!isYearly)}
-		className="relative w-12 h-6 bg-white/20 rounded-full p-1 transition-colors"
+		className={\`relative w-14 h-7 rounded-full transition-all duration-300 \${isYearly ? 'bg-purple-500' : 'bg-white/20'}\`}
 		whileTap={{ scale: 0.95 }}
 	>
 		<motion.div
-			className="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg"
-			animate={{ x: isYearly ? 24 : 0 }}
-			transition={{ type: "spring", stiffness: 300, damping: 30 }}
+			className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
+			animate={{ x: isYearly ? 28 : 4 }}
+			transition={{ type: "spring", stiffness: 500, damping: 30 }}
 		/>
 	</motion.button>
-	<span className={\`text-sm transition-colors \${isYearly ? 'text-white' : 'text-gray-400'}\`}>
+	<span className={\`text-sm font-medium transition-colors \${isYearly ? 'text-white' : 'text-gray-400'}\`}>
 		Yearly
 	</span>
 	{isYearly && (
 		<motion.span 
-			initial={{ opacity: 0, scale: 0.8 }}
-			animate={{ opacity: 1, scale: 1 }}
-			className="text-xs text-green-400 font-medium"
+			initial={{ scale: 0, opacity: 0 }}
+			animate={{ scale: 1, opacity: 1 }}
+			className="px-2 py-1 bg-green-500 text-white text-xs rounded-full font-bold"
 		>
-			Save 20%
+			20% OFF
 		</motion.span>
 	)}
-</motion.div>` },
-	{ id: 29, title: 'Void', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
-	whileHover={{ scale: 1.02 }}
-	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
->
-	<motion.div 
-		whileHover={{ rotate: 180 }}
-		transition={{ duration: 0.6 }}
-		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
-	>
-		<motion.div 
-			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
-			whileHover={{ scale: 1.1 }}
-			transition={{ duration: 0.3 }}
-		/>
-	</motion.div>
-</motion.div>` },
-	{ id: 30, title: 'Glow', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
-	whileHover={{ scale: 1.02 }}
-	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
->
-	<motion.div 
-		whileHover={{ rotate: 180 }}
-		transition={{ duration: 0.6 }}
-		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
-	>
-		<motion.div 
-			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
-			whileHover={{ scale: 1.1 }}
-			transition={{ duration: 0.3 }}
-		/>
-	</motion.div>
-</motion.div>` },
-	{ id: 31, title: 'Mist', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
-	whileHover={{ scale: 1.02 }}
-	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
->
-	<motion.div 
-		whileHover={{ rotate: 180 }}
-		transition={{ duration: 0.6 }}
-		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
-	>
-		<motion.div 
-			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
-			whileHover={{ scale: 1.1 }}
-			transition={{ duration: 0.3 }}
-		/>
-	</motion.div>
-</motion.div>` },
-	{ id: 32, title: 'Shade', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
-	whileHover={{ scale: 1.02 }}
-	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
->
-	<motion.div 
-		whileHover={{ rotate: 180 }}
-		transition={{ duration: 0.6 }}
-		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
-	>
-		<motion.div 
-			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
-			whileHover={{ scale: 1.1 }}
-			transition={{ duration: 0.3 }}
-		/>
-	</motion.div>
-</motion.div>` },
-	{ id: 33, title: 'Echo', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
-	whileHover={{ scale: 1.02 }}
-	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
->
-	<motion.div 
-		whileHover={{ rotate: 180 }}
-		transition={{ duration: 0.6 }}
-		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
-	>
-		<motion.div 
-			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
-			whileHover={{ scale: 1.1 }}
-			transition={{ duration: 0.3 }}
-		/>
-	</motion.div>
-</motion.div>` },
-	{ id: 34, title: 'Blur', category: 'Logo', preview: <LogoPlaceholder />, size: 'normal', code: `<motion.div 
-	whileHover={{ scale: 1.02 }}
-	className="w-full h-full flex items-center justify-center p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl group"
->
-	<motion.div 
-		whileHover={{ rotate: 180 }}
-		transition={{ duration: 0.6 }}
-		className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border border-white/20 flex items-center justify-center shadow-xl"
-	>
-		<motion.div 
-			className="w-8 h-8 bg-gradient-to-br from-white/30 to-white/10 rounded-lg"
-			whileHover={{ scale: 1.1 }}
-			transition={{ duration: 0.3 }}
-		/>
-	</motion.div>
 </motion.div>` }
 ]
 
@@ -1462,18 +1348,16 @@ export default function ComponentsPage() {
 												<Copy className="w-4 h-4 text-white/60 hover:text-white" />
 												)}
 										</motion.button>
-									</div>
+										</div>
 
 									{/* Component Preview - Center */}
-									<div className="flex-1 flex items-center justify-center p-4 pb-2 overflow-hidden">
-										<div className="max-w-full max-h-full flex items-center justify-center">
-											{component.preview}
-										</div>
+									<div className="flex-1 flex items-center justify-center p-6">
+										{component.preview}
 									</div>
 									
-									{/* Component Name - Bottom - Always Visible */}
-									<div className="mt-auto p-3 bg-black/40 backdrop-blur-md border-t border-white/20">
-										<h3 className="text-sm font-bold text-white text-center truncate">{component.title}</h3>
+									{/* Component Name - Bottom */}
+									<div className="px-4 py-5 bg-black/20 backdrop-blur-sm border-t border-white/10">
+										<h3 className="text-sm font-semibold text-white text-center">{component.title}</h3>
 									</div>
 								</div>
 							</motion.div>
