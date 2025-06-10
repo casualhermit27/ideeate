@@ -2,398 +2,680 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Copy, Check, Code2, Sparkles } from 'lucide-react'
+import { Copy, Check, Code2, Sparkles, Calendar, ChevronLeft, ChevronRight, Menu, X, Search, Heart, Star, ShoppingCart, Download, Play, Pause, Volume2, SkipBack, SkipForward, Plus } from 'lucide-react'
 import FloatingNavbar from '@/components/floating-navbar'
 import { Button } from '@/components/ui/button'
 
 const categories = [
 	'All',
 	'Buttons',
-	'Forms', 
-	'Navigation',
+	'Navigation', 
 	'Cards',
-	'Modals',
-	'Tables',
-	'Charts',
-	'Inputs',
-	'Layout'
+	'Forms',
+	'Calendars',
+	'Scrollbars',
+	'Animations',
+	'Glassmorphism',
+	'Audio Players',
+	'E-commerce'
 ]
+
+// Live Preview Components
+const GlassmorphismButton = () => (
+	<motion.button 
+		whileHover={{ scale: 1.05, y: -2 }}
+		whileTap={{ scale: 0.95 }}
+		className="relative overflow-hidden px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium shadow-2xl hover:shadow-white/25 transition-all duration-300"
+	>
+		<div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+		<span className="relative z-10">Glassmorphism</span>
+	</motion.button>
+)
+
+const NeonGlowButton = () => (
+	<motion.button 
+		whileHover={{ scale: 1.05 }}
+		whileTap={{ scale: 0.95 }}
+		className="relative px-8 py-4 bg-black border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg overflow-hidden group hover:text-black transition-colors duration-300"
+	>
+		<span className="absolute inset-0 bg-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+		<span className="relative z-10">NEON GLOW</span>
+		<div className="absolute inset-0 rounded-lg shadow-[0_0_20px_#00ffff,0_0_40px_#00ffff,0_0_60px_#00ffff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+	</motion.button>
+)
+
+const FloatingNavigation = () => (
+	<motion.nav 
+		initial={{ y: -20, opacity: 0 }}
+		animate={{ y: 0, opacity: 1 }}
+		className="relative px-6 py-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl"
+	>
+		<div className="flex items-center space-x-8">
+			<span className="text-white font-bold text-sm">Brand</span>
+			<div className="flex space-x-4">
+				{['Home', 'About', 'Contact'].map((item) => (
+					<motion.a 
+						key={item}
+						href="#" 
+						whileHover={{ scale: 1.1, color: '#ffffff' }}
+						className="text-gray-300 hover:text-white transition-colors text-sm"
+					>
+						{item}
+					</motion.a>
+				))}
+			</div>
+		</div>
+	</motion.nav>
+)
+
+const CrystallineCard = () => (
+	<motion.div 
+		whileHover={{ scale: 1.02, rotateY: 2 }}
+		className="relative overflow-hidden p-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl group"
+	>
+		<div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+		<div className="relative z-10">
+			<h3 className="text-lg font-bold text-white mb-2">Crystalline</h3>
+			<p className="text-gray-300 text-sm mb-4">Glass-like effect with gradients.</p>
+			<motion.button 
+				whileHover={{ scale: 1.05 }}
+				className="px-4 py-2 bg-white/20 text-white rounded-full backdrop-blur-sm border border-white/30 text-sm"
+			>
+				Explore →
+			</motion.button>
+		</div>
+	</motion.div>
+)
+
+const CustomScrollbar = () => (
+	<div className="relative">
+		<div className="h-32 overflow-y-auto pr-4 custom-scrollbar bg-gray-900/50 rounded-lg p-3">
+			<div className="space-y-3">
+				{Array.from({ length: 8 }, (_, i) => (
+					<div key={i} className="p-2 bg-white/10 rounded text-white text-sm">
+						Scrollable content item {i + 1}
+					</div>
+				))}
+			</div>
+		</div>
+		<style jsx>{`
+			.custom-scrollbar::-webkit-scrollbar {
+				width: 6px;
+			}
+			.custom-scrollbar::-webkit-scrollbar-track {
+				background: rgba(255,255,255,0.1);
+				border-radius: 10px;
+			}
+			.custom-scrollbar::-webkit-scrollbar-thumb {
+				background: linear-gradient(45deg, #667eea, #764ba2);
+				border-radius: 10px;
+			}
+			.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+				background: linear-gradient(45deg, #764ba2, #667eea);
+			}
+		`}</style>
+	</div>
+)
+
+const ModernCalendar = () => {
+	const [currentDate] = useState(new Date())
+	
+	return (
+		<motion.div 
+			initial={{ opacity: 0, y: 10 }}
+			animate={{ opacity: 1, y: 0 }}
+			className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-4 shadow-2xl"
+		>
+			<div className="flex items-center justify-between mb-4">
+				<h2 className="text-lg font-bold text-white">
+					{currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+				</h2>
+				<div className="flex space-x-1">
+					<motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+						<ChevronLeft className="w-4 h-4 text-white" />
+					</motion.button>
+					<motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+						<ChevronRight className="w-4 h-4 text-white" />
+					</motion.button>
+				</div>
+			</div>
+			<div className="grid grid-cols-7 gap-1">
+				{['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => (
+					<div key={day} className="text-center text-xs text-gray-400 pb-2">{day}</div>
+				))}
+				{Array.from({ length: 28 }, (_, i) => (
+					<motion.button
+						key={i}
+						whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.2)' }}
+						className="w-6 h-6 rounded-full text-white hover:bg-white/20 transition-colors text-xs flex items-center justify-center"
+					>
+						{i + 1}
+					</motion.button>
+				))}
+			</div>
+		</motion.div>
+	)
+}
+
+const MorphingMenuButton = () => {
+	const [isOpen, setIsOpen] = useState(false)
+	
+	return (
+		<motion.button
+			onClick={() => setIsOpen(!isOpen)}
+			className="relative w-12 h-12 bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl flex items-center justify-center group"
+			whileHover={{ scale: 1.05 }}
+			whileTap={{ scale: 0.95 }}
+		>
+			<div className="relative w-6 h-6">
+				<motion.span
+					animate={isOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
+					className="absolute block w-6 h-0.5 bg-white rounded-full origin-center transition-all duration-300"
+				/>
+				<motion.span
+					animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+					className="absolute block w-6 h-0.5 bg-white rounded-full top-2 transition-all duration-300"
+				/>
+				<motion.span
+					animate={isOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
+					className="absolute block w-6 h-0.5 bg-white rounded-full origin-center transition-all duration-300 top-4"
+				/>
+			</div>
+		</motion.button>
+	)
+}
+
+const GradientProgressRing = () => {
+	const [progress] = useState(75)
+	
+	return (
+		<div className="relative w-24 h-24">
+			<svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+				<circle
+					cx="50" cy="50" r="35"
+					fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="6"
+				/>
+				<motion.circle
+					cx="50" cy="50" r="35"
+					fill="none" strokeWidth="6"
+					strokeLinecap="round"
+					strokeDasharray="220"
+					strokeDashoffset={220 - (220 * progress) / 100}
+					stroke="url(#gradient)"
+					initial={{ strokeDashoffset: 220 }}
+					animate={{ strokeDashoffset: 220 - (220 * progress) / 100 }}
+					transition={{ duration: 2, ease: "easeInOut" }}
+				/>
+				<defs>
+					<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+						<stop offset="0%" stopColor="#667eea" />
+						<stop offset="100%" stopColor="#764ba2" />
+					</linearGradient>
+				</defs>
+			</svg>
+			<div className="absolute inset-0 flex items-center justify-center">
+				<span className="text-lg font-bold text-white">{progress}%</span>
+			</div>
+		</div>
+	)
+}
+
+const AudioPlayerWidget = () => {
+	const [isPlaying, setIsPlaying] = useState(false)
+	const [progress] = useState(45)
+	
+	return (
+		<motion.div 
+			initial={{ opacity: 0, scale: 0.9 }}
+			animate={{ opacity: 1, scale: 1 }}
+			className="relative overflow-hidden p-4 bg-black/40 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl"
+		>
+			<div className="flex items-center space-x-3">
+				<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+					<span className="text-white font-bold text-lg">♪</span>
+				</div>
+				<div className="flex-1">
+					<h4 className="text-white font-semibold text-sm">Aesthetic Vibes</h4>
+					<p className="text-gray-400 text-xs">Lo-Fi Hip Hop</p>
+				</div>
+			</div>
+			
+			<div className="mt-3 space-y-2">
+				<div className="flex items-center space-x-2">
+					<span className="text-xs text-gray-400">1:23</span>
+					<div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+						<motion.div 
+							className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
+							style={{ width: `${progress}%` }}
+							initial={{ width: 0 }}
+							animate={{ width: `${progress}%` }}
+						/>
+					</div>
+					<span className="text-xs text-gray-400">3:45</span>
+				</div>
+				
+				<div className="flex items-center justify-center space-x-3">
+					<motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+						<SkipBack className="w-4 h-4 text-white" />
+					</motion.button>
+					<motion.button 
+						onClick={() => setIsPlaying(!isPlaying)}
+						whileHover={{ scale: 1.1 }} 
+						whileTap={{ scale: 0.9 }}
+						className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
+					>
+						{isPlaying ? <Pause className="w-3 h-3 text-white" /> : <Play className="w-3 h-3 text-white ml-0.5" />}
+					</motion.button>
+					<motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+						<SkipForward className="w-4 h-4 text-white" />
+					</motion.button>
+				</div>
+			</div>
+		</motion.div>
+	)
+}
+
+const ProductCard = () => {
+	const [isLiked, setIsLiked] = useState(false)
+	
+	return (
+		<motion.div 
+			whileHover={{ y: -4, scale: 1.02 }}
+			className="relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl group"
+		>
+			<div className="relative h-32 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 flex items-center justify-center">
+				<span className="text-3xl">📱</span>
+				<motion.button
+					onClick={() => setIsLiked(!isLiked)}
+					whileHover={{ scale: 1.1 }}
+					whileTap={{ scale: 0.9 }}
+					className="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center"
+				>
+					<Heart className={`w-4 h-4 ${isLiked ? 'text-red-500 fill-red-500' : 'text-white'}`} />
+				</motion.button>
+			</div>
+			
+			<div className="p-4">
+				<h3 className="text-white font-semibold mb-1 text-sm">iPhone 15 Pro</h3>
+				<p className="text-gray-400 text-xs mb-3">Latest flagship smartphone</p>
+				<div className="flex items-center justify-between">
+					<span className="text-lg font-bold text-white">$999</span>
+					<motion.button
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						className="px-4 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-xs font-medium"
+					>
+						Add to Cart
+					</motion.button>
+				</div>
+			</div>
+		</motion.div>
+	)
+}
 
 const componentData = [
 	{ 
 		id: 1, 
-		title: 'Gradient Button', 
+		title: 'Glassmorphism Button', 
 		category: 'Buttons', 
-		height: 'h-32',
+		height: 'h-36',
 		framework: 'React',
-		code: `<button className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-  Click me
-</button>`,
-		description: 'Beautiful gradient button with hover effects and smooth transitions.',
-		complexity: 'Easy',
-		tags: ['gradient', 'hover', 'animation']
+		preview: <GlassmorphismButton />,
+		code: `<motion.button 
+  whileHover={{ scale: 1.05, y: -2 }}
+  whileTap={{ scale: 0.95 }}
+  className="relative overflow-hidden px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium shadow-2xl hover:shadow-white/25 transition-all duration-300"
+>
+  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+  <span className="relative z-10">Glassmorphism</span>
+</motion.button>`,
+		description: 'Beautiful glassmorphism button with hover animations and backdrop blur effects.',
+		complexity: 'Medium',
+		tags: ['glassmorphism', 'animation', 'modern']
 	},
 	{ 
 		id: 2, 
-		title: 'Loading Spinner', 
-		category: 'Components', 
-		height: 'h-28',
-		framework: 'CSS',
-		code: `<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>`,
-		description: 'Simple animated loading spinner using CSS.',
-		complexity: 'Easy',
-		tags: ['loading', 'animation', 'css']
+		title: 'Neon Glow Button', 
+		category: 'Buttons', 
+		height: 'h-36',
+		framework: 'React',
+		preview: <NeonGlowButton />,
+		code: `<motion.button 
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  className="relative px-8 py-4 bg-black border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg overflow-hidden group hover:text-black transition-colors duration-300"
+>
+  <span className="absolute inset-0 bg-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+  <span className="relative z-10">NEON GLOW</span>
+  <div className="absolute inset-0 rounded-lg shadow-[0_0_20px_#00ffff,0_0_40px_#00ffff,0_0_60px_#00ffff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</motion.button>`,
+		description: 'Cyberpunk-inspired neon glow button with electric effects.',
+		complexity: 'Medium',
+		tags: ['neon', 'cyberpunk', 'glow']
 	},
 	{ 
 		id: 3, 
-		title: 'Search Input', 
-		category: 'Inputs', 
-		height: 'h-36',
+		title: 'Floating Navigation Bar', 
+		category: 'Navigation', 
+		height: 'h-40',
 		framework: 'React',
-		code: `<div className="relative">
-  <input 
-    type="text" 
-    placeholder="Search..." 
-    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-  />
-  <SearchIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-</div>`,
-		description: 'Search input with icon and focus states.',
-		complexity: 'Easy',
-		tags: ['search', 'input', 'icon']
+		preview: <FloatingNavigation />,
+		code: `<motion.nav 
+  initial={{ y: -100, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl"
+>
+  <div className="flex items-center space-x-8">
+    <span className="text-white font-bold">Brand</span>
+    <div className="flex space-x-6">
+      {['Home', 'About', 'Services', 'Contact'].map((item) => (
+        <motion.a 
+          key={item}
+          href="#" 
+          whileHover={{ scale: 1.1, color: '#ffffff' }}
+          className="text-gray-300 hover:text-white transition-colors"
+        >
+          {item}
+        </motion.a>
+      ))}
+    </div>
+  </div>
+</motion.nav>`,
+		description: 'Floating navigation with glassmorphism and smooth animations.',
+		complexity: 'Medium',
+		tags: ['floating', 'navigation', 'glassmorphism']
 	},
 	{ 
 		id: 4, 
-		title: 'Card Component', 
+		title: 'Crystalline Card', 
 		category: 'Cards', 
-		height: 'h-40',
+		height: 'h-48',
 		framework: 'React',
-		code: `<div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
-  <h3 className="text-lg font-semibold mb-2">Card Title</h3>
-  <p className="text-gray-600 mb-4">Card description goes here...</p>
-  <button className="text-blue-500 hover:text-blue-600">Learn more →</button>
-</div>`,
-		description: 'Clean card component with hover effects.',
-		complexity: 'Easy',
-		tags: ['card', 'hover', 'layout']
+		preview: <CrystallineCard />,
+		code: `<motion.div 
+  whileHover={{ scale: 1.02, rotateY: 2 }}
+  className="relative overflow-hidden p-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl group"
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+  <div className="relative z-10">
+    <h3 className="text-lg font-bold text-white mb-2">Crystalline</h3>
+    <p className="text-gray-300 text-sm mb-4">Glass-like effect with gradients.</p>
+    <motion.button 
+      whileHover={{ scale: 1.05 }}
+      className="px-4 py-2 bg-white/20 text-white rounded-full backdrop-blur-sm border border-white/30 text-sm"
+    >
+      Explore →
+    </motion.button>
+  </div>
+</motion.div>`,
+		description: 'Crystalline glass card with 3D hover effects and gradient overlays.',
+		complexity: 'Advanced',
+		tags: ['crystalline', '3d', 'glassmorphism']
 	},
 	{ 
 		id: 5, 
-		title: 'Navigation Bar', 
-		category: 'Navigation', 
-		height: 'h-44',
-		framework: 'React',
-		code: `<nav className="bg-white shadow-lg">
-  <div className="max-w-7xl mx-auto px-4">
-    <div className="flex justify-between h-16">
-      <div className="flex items-center">
-        <span className="text-xl font-bold">Logo</span>
-      </div>
-      <div className="flex items-center space-x-4">
-        <a href="#" className="text-gray-700 hover:text-blue-500">Home</a>
-        <a href="#" className="text-gray-700 hover:text-blue-500">About</a>
-        <a href="#" className="text-gray-700 hover:text-blue-500">Contact</a>
-      </div>
-    </div>
+		title: 'Custom Scrollbar', 
+		category: 'Scrollbars', 
+		height: 'h-40',
+		framework: 'CSS',
+		preview: <CustomScrollbar />,
+		code: `<div className="h-48 overflow-y-auto pr-4 custom-scrollbar">
+  <div className="space-y-4">
+    {/* Content */}
   </div>
-</nav>`,
-		description: 'Responsive navigation bar with logo and menu items.',
-		complexity: 'Medium',
-		tags: ['navigation', 'responsive', 'menu']
+</div>
+
+<style jsx>{\`
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #764ba2, #667eea);
+    transform: scale(1.1);
+  }
+\`}</style>`,
+		description: 'Beautiful custom scrollbar with gradient colors and hover effects.',
+		complexity: 'Easy',
+		tags: ['scrollbar', 'gradient', 'custom']
 	},
 	{ 
 		id: 6, 
-		title: 'Modal Dialog', 
-		category: 'Modals', 
-		height: 'h-48',
+		title: 'Modern Calendar', 
+		category: 'Calendars', 
+		height: 'h-64',
 		framework: 'React',
-		code: `<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-  <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
-    <h2 className="text-xl font-bold mb-4">Modal Title</h2>
-    <p className="text-gray-600 mb-6">Modal content goes here...</p>
-    <div className="flex justify-end space-x-2">
-      <button className="px-4 py-2 text-gray-500 hover:text-gray-700">Cancel</button>
-      <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Confirm</button>
+		preview: <ModernCalendar />,
+		code: `const [currentDate, setCurrentDate] = useState(new Date());
+
+<motion.div 
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl"
+>
+  <div className="flex items-center justify-between mb-6">
+    <h2 className="text-xl font-bold text-white">
+      {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+    </h2>
+    <div className="flex space-x-2">
+      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <ChevronLeft className="w-5 h-5 text-white" />
+      </motion.button>
+      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <ChevronRight className="w-5 h-5 text-white" />
+      </motion.button>
     </div>
   </div>
-</div>`,
-		description: 'Modal dialog with backdrop and action buttons.',
-		complexity: 'Medium',
-		tags: ['modal', 'dialog', 'overlay']
+  <div className="grid grid-cols-7 gap-2">
+    {Array.from({ length: 31 }, (_, i) => (
+      <motion.button
+        key={i}
+        whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.2)' }}
+        className="w-10 h-10 rounded-full text-white hover:bg-white/20 transition-colors"
+      >
+        {i + 1}
+      </motion.button>
+    ))}
+  </div>
+</motion.div>`,
+		description: 'Glassmorphism calendar with smooth animations and hover effects.',
+		complexity: 'Advanced',
+		tags: ['calendar', 'glassmorphism', 'interactive']
 	},
 	{ 
 		id: 7, 
-		title: 'Progress Bar', 
-		category: 'Components', 
+		title: 'Morphing Menu Button', 
+		category: 'Buttons', 
 		height: 'h-32',
-		framework: 'CSS',
-		code: `<div className="w-full bg-gray-200 rounded-full h-4">
-  <div className="bg-blue-500 h-4 rounded-full transition-all duration-300" style={{width: '75%'}}></div>
-</div>`,
-		description: 'Animated progress bar with smooth transitions.',
-		complexity: 'Easy',
-		tags: ['progress', 'animation', 'indicator']
+		framework: 'React',
+		preview: <MorphingMenuButton />,
+		code: `const [isOpen, setIsOpen] = useState(false);
+
+<motion.button
+  onClick={() => setIsOpen(!isOpen)}
+  className="relative w-12 h-12 bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl flex items-center justify-center group"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  <div className="relative w-6 h-6">
+    <motion.span
+      animate={isOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
+      className="absolute block w-6 h-0.5 bg-white rounded-full origin-center transition-all duration-300"
+    />
+    <motion.span
+      animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+      className="absolute block w-6 h-0.5 bg-white rounded-full top-2 transition-all duration-300"
+    />
+    <motion.span
+      animate={isOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
+      className="absolute block w-6 h-0.5 bg-white rounded-full origin-center transition-all duration-300 top-4"
+    />
+  </div>
+</motion.button>`,
+		description: 'Morphing hamburger menu with smooth transform animations.',
+		complexity: 'Medium',
+		tags: ['menu', 'animation', 'transform']
 	},
 	{ 
 		id: 8, 
-		title: 'Toggle Switch', 
-		category: 'Inputs', 
-		height: 'h-28',
+		title: 'Gradient Progress Ring', 
+		category: 'Animations', 
+		height: 'h-40',
 		framework: 'React',
-		code: `<button className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 data-[checked]:bg-blue-500">
-  <span className="inline-block h-4 w-4 transform rounded-full bg-white transition-transform data-[checked]:translate-x-6" />
-</button>`,
-		description: 'iOS-style toggle switch component.',
-		complexity: 'Medium',
-		tags: ['toggle', 'switch', 'input']
+		preview: <GradientProgressRing />,
+		code: `const [progress, setProgress] = useState(75);
+
+<div className="relative w-32 h-32">
+  <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+    <circle
+      cx="50" cy="50" r="40"
+      fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8"
+    />
+    <motion.circle
+      cx="50" cy="50" r="40"
+      fill="none" strokeWidth="8"
+      strokeLinecap="round"
+      strokeDasharray="220"
+      strokeDashoffset={220 - (220 * progress) / 100}
+      stroke="url(#gradient)"
+      initial={{ strokeDashoffset: 220 }}
+      animate={{ strokeDashoffset: 220 - (220 * progress) / 100 }}
+      transition={{ duration: 2, ease: "easeInOut" }}
+    />
+    <defs>
+      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#667eea" />
+        <stop offset="100%" stopColor="#764ba2" />
+      </linearGradient>
+    </defs>
+  </svg>
+  <div className="absolute inset-0 flex items-center justify-center">
+    <span className="text-2xl font-bold text-white">{progress}%</span>
+  </div>
+</div>`,
+		description: 'Animated gradient progress ring with smooth transitions.',
+		complexity: 'Advanced',
+		tags: ['progress', 'animation', 'gradient']
 	},
 	{ 
 		id: 9, 
-		title: 'Breadcrumb', 
-		category: 'Navigation', 
-		height: 'h-24',
+		title: 'Audio Player Widget', 
+		category: 'Audio Players', 
+		height: 'h-44',
 		framework: 'React',
-		code: `<nav className="flex" aria-label="Breadcrumb">
-  <ol className="flex items-center space-x-2">
-    <li><a href="#" className="text-blue-500 hover:text-blue-600">Home</a></li>
-    <li><span className="text-gray-400">/</span></li>
-    <li><a href="#" className="text-blue-500 hover:text-blue-600">Category</a></li>
-    <li><span className="text-gray-400">/</span></li>
-    <li><span className="text-gray-500">Current Page</span></li>
-  </ol>
-</nav>`,
-		description: 'Breadcrumb navigation with separators.',
-		complexity: 'Easy',
-		tags: ['breadcrumb', 'navigation', 'path']
+		preview: <AudioPlayerWidget />,
+		code: `const [isPlaying, setIsPlaying] = useState(false);
+const [progress, setProgress] = useState(45);
+
+<motion.div 
+  initial={{ opacity: 0, scale: 0.9 }}
+  animate={{ opacity: 1, scale: 1 }}
+  className="relative overflow-hidden p-6 bg-black/40 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl"
+>
+  <div className="flex items-center space-x-4">
+    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
+      <span className="text-white font-bold">♪</span>
+    </div>
+    <div className="flex-1">
+      <h4 className="text-white font-semibold">Aesthetic Vibes</h4>
+      <p className="text-gray-400 text-sm">Lo-Fi Hip Hop</p>
+    </div>
+  </div>
+  
+  <div className="mt-4 space-y-3">
+    <div className="flex items-center space-x-2">
+      <span className="text-xs text-gray-400">1:23</span>
+      <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+        <motion.div 
+          className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
+          style={{ width: \`\${progress}%\` }}
+          initial={{ width: 0 }}
+          animate={{ width: \`\${progress}%\` }}
+        />
+      </div>
+      <span className="text-xs text-gray-400">3:45</span>
+    </div>
+    
+    <div className="flex items-center justify-center space-x-4">
+      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <SkipBack className="w-5 h-5 text-white" />
+      </motion.button>
+      <motion.button 
+        onClick={() => setIsPlaying(!isPlaying)}
+        whileHover={{ scale: 1.1 }} 
+        whileTap={{ scale: 0.9 }}
+        className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+      >
+        {isPlaying ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white ml-1" />}
+      </motion.button>
+      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <SkipForward className="w-5 h-5 text-white" />
+      </motion.button>
+    </div>
+  </div>
+</motion.div>`,
+		description: 'Beautiful audio player with glassmorphism and smooth animations.',
+		complexity: 'Advanced',
+		tags: ['audio', 'player', 'glassmorphism']
 	},
 	{ 
 		id: 10, 
-		title: 'Data Table', 
-		category: 'Tables', 
-		height: 'h-52',
+		title: 'Product Card E-commerce', 
+		category: 'E-commerce', 
+		height: 'h-56',
 		framework: 'React',
-		code: `<div className="overflow-x-auto">
-  <table className="min-w-full bg-white border border-gray-200">
-    <thead className="bg-gray-50">
-      <tr>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-      </tr>
-    </thead>
-    <tbody className="bg-white divide-y divide-gray-200">
-      <tr>
-        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">John Doe</td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">john@example.com</td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Admin</td>
-      </tr>
-    </tbody>
-  </table>
-</div>`,
-		description: 'Responsive data table with styled headers.',
-		complexity: 'Medium',
-		tags: ['table', 'data', 'responsive']
-	},
-	{ 
-		id: 11, 
-		title: 'Alert Banner', 
-		category: 'Components', 
-		height: 'h-36',
-		framework: 'React',
-		code: `<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-  <div className="flex">
-    <div className="flex-shrink-0">
-      <InfoIcon className="h-5 w-5 text-blue-400" />
-    </div>
-    <div className="ml-3">
-      <h3 className="text-sm font-medium text-blue-800">Information</h3>
-      <div className="mt-2 text-sm text-blue-700">
-        <p>This is an informational alert message.</p>
-      </div>
+		preview: <ProductCard />,
+		code: `const [isLiked, setIsLiked] = useState(false);
+
+<motion.div 
+  whileHover={{ y: -8, scale: 1.02 }}
+  className="relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl group"
+>
+  <div className="relative h-48 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 flex items-center justify-center">
+    <span className="text-4xl">📱</span>
+    <motion.button
+      onClick={() => setIsLiked(!isLiked)}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center"
+    >
+      <Heart className={\`w-5 h-5 \${isLiked ? 'text-red-500 fill-red-500' : 'text-white'}\`} />
+    </motion.button>
+  </div>
+  
+  <div className="p-6">
+    <h3 className="text-white font-semibold mb-1">iPhone 15 Pro</h3>
+    <p className="text-gray-400 text-sm mb-3">Latest flagship smartphone</p>
+    <div className="flex items-center justify-between">
+      <span className="text-2xl font-bold text-white">$999</span>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-medium"
+      >
+        Add to Cart
+      </motion.button>
     </div>
   </div>
-</div>`,
-		description: 'Alert banner with icon and colored background.',
-		complexity: 'Easy',
-		tags: ['alert', 'banner', 'notification']
-	},
-	{ 
-		id: 12, 
-		title: 'Tooltip', 
-		category: 'Components', 
-		height: 'h-32',
-		framework: 'CSS',
-		code: `<div className="relative group">
-  <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-    Hover me
-  </button>
-  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity">
-    Tooltip text
-  </div>
-</div>`,
-		description: 'CSS-only tooltip with hover effect.',
+</motion.div>`,
+		description: 'Modern e-commerce product card with like button and hover effects.',
 		complexity: 'Medium',
-		tags: ['tooltip', 'hover', 'css']
-	},
-	{ 
-		id: 13, 
-		title: 'Badge', 
-		category: 'Components', 
-		height: 'h-24',
-		framework: 'React',
-		code: `<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-  New
-</span>`,
-		description: 'Simple badge component with colored background.',
-		complexity: 'Easy',
-		tags: ['badge', 'label', 'tag']
-	},
-	{ 
-		id: 14, 
-		title: 'Dropdown Menu', 
-		category: 'Navigation', 
-		height: 'h-40',
-		framework: 'React',
-		code: `<div className="relative group">
-  <button className="px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm">
-    Options ▼
-  </button>
-  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 group-hover:block hidden">
-    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Option 1</a>
-    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Option 2</a>
-    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Option 3</a>
-  </div>
-</div>`,
-		description: 'Dropdown menu with hover trigger.',
-		complexity: 'Medium',
-		tags: ['dropdown', 'menu', 'hover']
-	},
-	{ 
-		id: 15, 
-		title: 'Skeleton Loader', 
-		category: 'Components', 
-		height: 'h-36',
-		framework: 'CSS',
-		code: `<div className="animate-pulse">
-  <div className="bg-gray-300 h-4 rounded w-3/4 mb-2"></div>
-  <div className="bg-gray-300 h-4 rounded w-1/2 mb-2"></div>
-  <div className="bg-gray-300 h-20 rounded mb-2"></div>
-  <div className="bg-gray-300 h-4 rounded w-5/6"></div>
-</div>`,
-		description: 'Skeleton loading placeholder with animation.',
-		complexity: 'Easy',
-		tags: ['skeleton', 'loading', 'placeholder']
-	},
-	{ 
-		id: 16, 
-		title: 'Tabs', 
-		category: 'Navigation', 
-		height: 'h-44',
-		framework: 'React',
-		code: `<div>
-  <nav className="flex space-x-8 border-b border-gray-200">
-    <button className="py-2 px-1 border-b-2 border-blue-500 text-blue-600 font-medium text-sm">
-      Tab 1
-    </button>
-    <button className="py-2 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium text-sm">
-      Tab 2
-    </button>
-    <button className="py-2 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium text-sm">
-      Tab 3
-    </button>
-  </nav>
-  <div className="mt-4">
-    <p>Tab content goes here...</p>
-  </div>
-</div>`,
-		description: 'Tab navigation with active state indicator.',
-		complexity: 'Medium',
-		tags: ['tabs', 'navigation', 'state']
-	},
-	{ 
-		id: 17, 
-		title: 'Avatar', 
-		category: 'Components', 
-		height: 'h-28',
-		framework: 'React',
-		code: `<div className="flex items-center space-x-3">
-  <img className="h-10 w-10 rounded-full" src="/avatar.jpg" alt="Avatar" />
-  <div>
-    <p className="text-sm font-medium text-gray-900">John Doe</p>
-    <p className="text-sm text-gray-500">john@example.com</p>
-  </div>
-</div>`,
-		description: 'User avatar with name and email.',
-		complexity: 'Easy',
-		tags: ['avatar', 'user', 'profile']
-	},
-	{ 
-		id: 18, 
-		title: 'Pagination', 
-		category: 'Navigation', 
-		height: 'h-32',
-		framework: 'React',
-		code: `<nav className="flex items-center justify-between">
-  <button className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
-    Previous
-  </button>
-  <div className="flex space-x-1">
-    <button className="px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-300 rounded-md">1</button>
-    <button className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">2</button>
-    <button className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">3</button>
-  </div>
-  <button className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
-    Next
-  </button>
-</nav>`,
-		description: 'Pagination component with previous/next buttons.',
-		complexity: 'Medium',
-		tags: ['pagination', 'navigation', 'pages']
-	},
-	{ 
-		id: 19, 
-		title: 'Star Rating', 
-		category: 'Inputs', 
-		height: 'h-28',
-		framework: 'React',
-		code: `<div className="flex items-center space-x-1">
-  {[1, 2, 3, 4, 5].map((star) => (
-    <button key={star} className="text-yellow-400 hover:text-yellow-500">
-      <StarIcon className="h-5 w-5" />
-    </button>
-  ))}
-  <span className="ml-2 text-sm text-gray-600">(4.5)</span>
-</div>`,
-		description: 'Interactive star rating component.',
-		complexity: 'Medium',
-		tags: ['rating', 'stars', 'interactive']
-	},
-	{ 
-		id: 20, 
-		title: 'File Upload', 
-		category: 'Inputs', 
-		height: 'h-40',
-		framework: 'React',
-		code: `<div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
-  <div className="space-y-2">
-    <UploadIcon className="mx-auto h-8 w-8 text-gray-400" />
-    <div className="text-sm text-gray-600">
-      <span className="font-medium text-blue-600 hover:text-blue-500 cursor-pointer">Click to upload</span>
-      <span> or drag and drop</span>
-    </div>
-    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-  </div>
-  <input type="file" className="hidden" />
-</div>`,
-		description: 'Drag and drop file upload area.',
-		complexity: 'Medium',
-		tags: ['upload', 'file', 'drag-drop']
+		tags: ['ecommerce', 'product', 'interactive']
 	}
 ]
 
 export default function ComponentsPage() {
 	const [selectedCategory, setSelectedCategory] = useState('All')
 	const [copiedId, setCopiedId] = useState<number | null>(null)
+	const [showCode, setShowCode] = useState<number | null>(null)
 
 	const filteredComponents = selectedCategory === 'All' 
 		? componentData 
@@ -423,7 +705,7 @@ export default function ComponentsPage() {
 		switch (complexity) {
 			case 'Easy': return 'text-green-500'
 			case 'Medium': return 'text-yellow-500'
-			case 'Hard': return 'text-red-500'
+			case 'Advanced': return 'text-red-500'
 			default: return 'text-gray-500'
 		}
 	}
@@ -445,7 +727,7 @@ export default function ComponentsPage() {
 							Components
 						</h1>
 						<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-							Ready-to-use UI components with clean code and modern design patterns
+							Interactive component library with live previews and copy-paste code
 						</p>
 					</motion.div>
 
@@ -480,12 +762,12 @@ export default function ComponentsPage() {
 						))}
 					</motion.div>
 
-					{/* Masonry Grid */}
+					{/* Components Grid */}
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.8, delay: 0.4 }}
-						className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
 					>
 						{filteredComponents.map((component, index) => (
 							<motion.div
@@ -493,59 +775,82 @@ export default function ComponentsPage() {
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.5, delay: 0.05 * index }}
-								className="break-inside-avoid mb-4"
+								className="group bg-card border border-border rounded-xl overflow-hidden hover:border-border/60 transition-all duration-300"
 							>
-								<div className="group bg-card border border-border rounded-xl overflow-hidden hover:border-border/60 transition-all duration-300">
-									{/* Component Preview */}
-									<div className={`
-										${component.height} bg-muted/30 p-4 flex flex-col justify-between
-										group-hover:bg-muted/40 transition-colors duration-300
-									`}>
-										<div className="flex-1 overflow-hidden">
-											<div className="flex items-center gap-2 mb-2">
-												<Code2 className="w-4 h-4 text-muted-foreground" />
-												<span className="text-xs text-muted-foreground">{component.framework}</span>
-											</div>
-											<p className="text-xs text-muted-foreground leading-relaxed">
-												{component.description}
-											</p>
-										</div>
-										<div className="flex flex-wrap gap-1 mt-2">
-											{component.tags.slice(0, 2).map((tag) => (
-												<span key={tag} className="text-xs bg-background/50 px-2 py-1 rounded-full text-muted-foreground">
-													{tag}
-												</span>
-											))}
-										</div>
+								{/* Live Preview */}
+								<div className={`
+									${component.height} bg-gradient-to-br from-gray-900 via-black to-gray-900 p-6 flex items-center justify-center
+									group-hover:from-gray-800 group-hover:via-gray-900 group-hover:to-gray-800 transition-all duration-300
+								`}>
+									{component.preview}
+								</div>
+								
+								{/* Component Info */}
+								<div className="p-4 bg-card">
+									<div className="flex items-center justify-between mb-3">
+										<h3 className="text-lg font-semibold text-foreground">{component.title}</h3>
+										<span className={`text-xs font-medium ${getComplexityColor(component.complexity)}`}>
+											{component.complexity}
+										</span>
 									</div>
 									
-									{/* Bottom Content */}
-									<div className="p-4 bg-card">
-										<div className="flex items-center justify-between mb-3">
-											<h3 className="text-sm font-medium text-foreground">{component.title}</h3>
-											<span className={`text-xs font-medium ${getComplexityColor(component.complexity)}`}>
-												{component.complexity}
+									<p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+										{component.description}
+									</p>
+									
+									<div className="flex flex-wrap gap-1 mb-4">
+										{component.tags.map((tag) => (
+											<span key={tag} className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
+												{tag}
 											</span>
-										</div>
+										))}
+									</div>
+									
+									<div className="flex items-center justify-between">
+										<span className={`px-3 py-1 rounded-full text-xs font-medium ${getFrameworkColor(component.framework)}`}>
+											{component.framework}
+										</span>
 										
-										<div className="flex items-center justify-between">
-											<span className={`px-2 py-1 rounded-full text-xs font-medium ${getFrameworkColor(component.framework)}`}>
-												{component.framework}
-											</span>
+										<div className="flex space-x-2">
+											{/* Show Code Button */}
+											<motion.button
+												onClick={() => setShowCode(showCode === component.id ? null : component.id)}
+												whileHover={{ scale: 1.05 }}
+												whileTap={{ scale: 0.95 }}
+												className="p-2 bg-muted hover:bg-accent rounded-lg transition-all duration-200 flex items-center space-x-1"
+											>
+												<Code2 className="w-4 h-4 text-muted-foreground" />
+											</motion.button>
 											
 											{/* Copy Button */}
-											<button
+											<motion.button
 												onClick={() => copyToClipboard(component.code, component.id)}
+												whileHover={{ scale: 1.05 }}
+												whileTap={{ scale: 0.95 }}
 												className="p-2 bg-muted hover:bg-accent rounded-lg transition-all duration-200 flex items-center space-x-1"
 											>
 												{copiedId === component.id ? (
-													<Check className="w-3 h-3 text-green-500" />
+													<Check className="w-4 h-4 text-green-500" />
 												) : (
-													<Copy className="w-3 h-3 text-muted-foreground" />
+													<Copy className="w-4 h-4 text-muted-foreground" />
 												)}
-											</button>
+											</motion.button>
 										</div>
 									</div>
+									
+									{/* Code Block */}
+									{showCode === component.id && (
+										<motion.div
+											initial={{ opacity: 0, height: 0 }}
+											animate={{ opacity: 1, height: 'auto' }}
+											exit={{ opacity: 0, height: 0 }}
+											className="mt-4 p-4 bg-muted/50 rounded-lg border"
+										>
+											<pre className="text-xs text-muted-foreground overflow-x-auto">
+												<code>{component.code}</code>
+											</pre>
+										</motion.div>
+									)}
 								</div>
 							</motion.div>
 						))}
@@ -563,7 +868,7 @@ export default function ComponentsPage() {
 							className="bg-muted text-foreground hover:bg-accent rounded-xl px-8 py-3"
 						>
 							<Sparkles className="w-4 h-4 mr-2" />
-							Load More Components
+							More Components Coming Soon
 						</Button>
 					</motion.div>
 				</div>
