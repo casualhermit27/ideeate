@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Moon, Sun, Code, FileText, Lightbulb } from 'lucide-react'
+import { Moon, Sun, Code, FileText, Lightbulb, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from '@/components/theme-provider'
 import Link from 'next/link'
@@ -13,7 +13,7 @@ export default function FloatingNavbar() {
 		setTheme(theme === 'dark' ? 'light' : 'dark')
 	}
 
-	const navItems = [
+	const mainNavItems = [
 		{
 			name: 'Prompts',
 			icon: Lightbulb,
@@ -59,7 +59,8 @@ export default function FloatingNavbar() {
 
 					{/* Navigation Items */}
 					<div className="flex items-center gap-2">
-						{navItems.map((item, index) => (
+						{/* Main Navigation Items */}
+						{mainNavItems.map((item, index) => (
 							<motion.div
 								key={item.name}
 								initial={{ opacity: 0, y: -20 }}
@@ -83,13 +84,47 @@ export default function FloatingNavbar() {
 							</motion.div>
 						))}
 
-						{/* Theme Toggle */}
+						{/* Vertical Separator */}
 						<motion.div
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ 
 								duration: 0.5, 
 								delay: 0.3,
+								ease: [0.25, 0.46, 0.45, 0.94]
+							}}
+							className="h-6 w-px bg-border mx-2"
+						/>
+
+						{/* Playground Button - Highlighted */}
+						<motion.div
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ 
+								duration: 0.5, 
+								delay: 0.4,
+								ease: [0.25, 0.46, 0.45, 0.94]
+							}}
+						>
+							<Link href="/playground">
+								<Button
+									variant="default"
+									size="sm"
+									className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 rounded-xl shadow-md"
+								>
+									<Play className="w-4 h-4 mr-2" />
+									Playground
+								</Button>
+							</Link>
+						</motion.div>
+
+						{/* Theme Toggle */}
+						<motion.div
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ 
+								duration: 0.5, 
+								delay: 0.5,
 								ease: [0.25, 0.46, 0.45, 0.94]
 							}}
 						>

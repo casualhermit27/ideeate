@@ -1,9 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Copy, Check, Code, MessageSquare } from 'lucide-react';
+import { X, Copy, Check, MessageSquare, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useState, useRef, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { GitHubIcon } from '@/components/icons/github-icon';
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -15,7 +16,7 @@ interface ImageModalProps {
     category: string;
     platform: string;
     prompt: string;
-    code?: string; // Optional code field
+    repository?: string; // Repository URL instead of code
     rating: number;
     views: string;
   } | null;
@@ -23,7 +24,7 @@ interface ImageModalProps {
 
 export default function ImageModal({ isOpen, onClose, landing }: ImageModalProps) {
   const [copiedId, setCopiedId] = useState<number | null>(null);
-  const [activeTab, setActiveTab] = useState<"prompt" | "code">("prompt");
+  const [activeTab, setActiveTab] = useState<"prompt" | "github">("prompt");
   const [imageHeight, setImageHeight] = useState<number | null>(null);
   const [windowHeight, setWindowHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 0);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -68,6 +69,10 @@ export default function ImageModal({ isOpen, onClose, landing }: ImageModalProps
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
+  };
+
+  const openRepository = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const getPlatformColor = (platform: string) => {
@@ -152,16 +157,16 @@ export default function ImageModal({ isOpen, onClose, landing }: ImageModalProps
                       <Tabs 
                         defaultValue="prompt" 
                         className="w-full" 
-                        onValueChange={(value: string) => setActiveTab(value as "prompt" | "code")}
+                        onValueChange={(value: string) => setActiveTab(value as "prompt" | "github")}
                       >
                         <TabsList className="grid w-full grid-cols-2">
                           <TabsTrigger value="prompt" className="flex items-center gap-2">
                             <MessageSquare className="w-4 h-4" />
                             Prompt
                           </TabsTrigger>
-                          <TabsTrigger value="code" className="flex items-center gap-2">
-                            <Code className="w-4 h-4" />
-                            Code
+                          <TabsTrigger value="github" className="flex items-center gap-2">
+                            <GitHubIcon className="w-4 h-4" />
+                            GitHub
                           </TabsTrigger>
                         </TabsList>
                       </Tabs>
@@ -177,35 +182,93 @@ export default function ImageModal({ isOpen, onClose, landing }: ImageModalProps
                             <div className="w-3 h-3 rounded-full bg-green-500/20"></div>
                           </div>
                           <span className="text-xs text-muted-foreground">
-                            {activeTab === "prompt" ? "prompt.txt" : "code.tsx"}
+                            {activeTab === "prompt" ? "prompt.txt" : "repository.md"}
                           </span>
                         </div>
                         <div className="relative">
-                          <pre className="p-4 overflow-x-auto whitespace-pre-wrap break-words min-h-[200px]">
-                            <code className="text-sm">
-                              {activeTab === "prompt" ? landing.prompt : landing.code || "No code available for this design"}
-                            </code>
-                          </pre>
-                          <div className="absolute bottom-2 right-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => copyToClipboard(activeTab === "prompt" ? landing.prompt : landing.code || "", landing.id)}
-                              className="opacity-0 group-hover:opacity-100 transition-opacity bg-background/50 hover:bg-background/80 backdrop-blur-sm"
-                            >
-                              {copiedId === landing.id ? (
-                                <div className="flex items-center gap-1">
-                                  <Check className="w-4 h-4 text-green-500" />
-                                  <span className="text-xs text-green-500">Copied!</span>
+                          {activeTab === "prompt" ? (
+                            <pre className="p-4 overflow-x-auto whitespace-pre-wrap break-words min-h-[200px]">
+                              <code className="text-sm">
+                                {landing.prompt}
+                              </code>
+                            </pre>
+                          ) : (
+                            <div className="p-4 min-h-[200px] space-y-4">
+                              <div className="flex items-center gap-2 mb-4">
+                                <GitHubIcon className="w-5 h-5" />
+                                <span className="font-semibold text-foreground">Repository</span>
+                              </div>
+                              
+                              {landing.repository ? (
+                                <div className="space-y-4">
+                                  <div className="bg-background/50 border border-border rounded-lg p-3">
+                                    <div className="flex items-center justify-between">
+                                      <div className="flex items-center gap-2">
+                                        <GitHubIcon className="w-4 h-4" />
+                                        <span className="text-sm font-medium">Source Code</span>
+                                      </div>
+                                      <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => openRepository(landing.repository!)}
+                                        className="text-blue-500 hover:text-blue-600"
+                                      >
+                                        <ExternalLink className="w-4 h-4 mr-1" />
+                                        Open
+                                      </Button>
+                                    </div>
+                                    <p className="text-xs text-muted-foreground mt-2 font-mono break-all">
+                                      {landing.repository}
+                                    </p>
+                                  </div>
+                                  
+                                  <div className="text-xs text-muted-foreground space-y-2">
+                                    <div className="flex items-center gap-2">
+                                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                      <span>Ready to deploy</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                      <span>Modern tech stack</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                      <span>Responsive design</span>
+                                    </div>
+                                  </div>
                                 </div>
                               ) : (
-                                <div className="flex items-center gap-1">
-                                  <Copy className="w-4 h-4" />
-                                  <span className="text-xs">Copy</span>
+                                <div className="text-center text-muted-foreground py-8">
+                                  <GitHubIcon className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                                  <p>Repository not available</p>
+                                  <p className="text-xs">Check back later for source code</p>
                                 </div>
                               )}
-                            </Button>
-                          </div>
+                            </div>
+                          )}
+                          
+                          {activeTab === "prompt" && (
+                            <div className="absolute bottom-2 right-2">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => copyToClipboard(landing.prompt, landing.id)}
+                                className="opacity-0 group-hover:opacity-100 transition-opacity bg-background/50 hover:bg-background/80 backdrop-blur-sm"
+                              >
+                                {copiedId === landing.id ? (
+                                  <div className="flex items-center gap-1">
+                                    <Check className="w-4 h-4 text-green-500" />
+                                    <span className="text-xs text-green-500">Copied!</span>
+                                  </div>
+                                ) : (
+                                  <div className="flex items-center gap-1">
+                                    <Copy className="w-4 h-4" />
+                                    <span className="text-xs">Copy</span>
+                                  </div>
+                                )}
+                              </Button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
