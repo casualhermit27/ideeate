@@ -370,13 +370,13 @@ export default function ComponentsPage() {
 	const getComponentSize = (size: string) => {
 		switch (size) {
 			case 'wide':
-				return 'md:col-span-2 h-48'
+				return 'md:col-span-2 h-64'
 			case 'tall':
 				return 'md:row-span-2 h-96'
 			case 'large':
 				return 'md:col-span-2 md:row-span-2 h-96'
 			default:
-				return 'h-48'
+				return 'h-64'
 		}
 	}
 
@@ -432,12 +432,12 @@ export default function ComponentsPage() {
 						))}
 					</motion.div>
 
-					{/* Components Grid - Masonry Style */}
+					{/* Components Grid - Consistent Spacing */}
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.8, delay: 0.4 }}
-						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-max"
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
 					>
 						{filteredComponents.map((component, index) => (
 							<motion.div
@@ -447,16 +447,14 @@ export default function ComponentsPage() {
 								transition={{ duration: 0.5, delay: 0.05 * index }}
 								className={`group bg-card border border-border rounded-xl overflow-hidden hover:border-border/60 transition-all duration-300 ${getComponentSize(component.size)}`}
 							>
-								{/* Component Preview - Full Card */}
-								<div className="h-full bg-gradient-to-br from-gray-900 via-black to-gray-900 p-6 flex flex-col items-center justify-center group-hover:from-gray-800 group-hover:via-gray-900 group-hover:to-gray-800 transition-all duration-300 relative">
-									{component.preview}
-									
-									{/* Copy Button - Positioned in corner */}
+								{/* Component Preview Area */}
+								<div className="h-full bg-gradient-to-br from-gray-900 via-black to-gray-900 group-hover:from-gray-800 group-hover:via-gray-900 group-hover:to-gray-800 transition-all duration-300 relative flex flex-col">
+									{/* Copy Button - Top Right */}
 									<motion.button
 										onClick={() => copyToClipboard(component.title, component.id)}
 										whileHover={{ scale: 1.05 }}
 										whileTap={{ scale: 0.95 }}
-										className="absolute top-4 right-4 p-2 bg-black/40 hover:bg-black/60 rounded-lg transition-all duration-200 backdrop-blur-sm"
+										className="absolute top-4 right-4 p-2 bg-black/40 hover:bg-black/60 rounded-lg transition-all duration-200 backdrop-blur-sm z-10"
 									>
 										{copiedId === component.id ? (
 											<Check className="w-4 h-4 text-green-400" />
@@ -464,11 +462,16 @@ export default function ComponentsPage() {
 											<Copy className="w-4 h-4 text-white/60 hover:text-white" />
 										)}
 									</motion.button>
-								</div>
-								
-								{/* Component Name */}
-								<div className="p-4 bg-card">
-									<h3 className="text-sm font-medium text-foreground text-center">{component.title}</h3>
+
+									{/* Component Preview - Center */}
+									<div className="flex-1 flex items-center justify-center p-6">
+										{component.preview}
+									</div>
+									
+									{/* Component Name - Bottom */}
+									<div className="p-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
+										<h3 className="text-sm font-semibold text-white text-center">{component.title}</h3>
+									</div>
 								</div>
 							</motion.div>
 						))}
