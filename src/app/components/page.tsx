@@ -68,10 +68,10 @@ const VerticalFloatingNav = () => (
 	<motion.nav 
 		initial={{ x: -20, opacity: 0 }}
 		animate={{ x: 0, opacity: 1 }}
-		className="py-4 px-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+		className="h-fit py-4 px-4 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl mx-auto"
 	>
 		<div className="flex flex-col items-center space-y-4">
-			{[Home, Search, Heart, Settings, User].map((Icon, index) => (
+			{[Home, Search, Heart, Settings].map((Icon, index) => (
 				<motion.button
 					key={index}
 					whileHover={{ scale: 1.1, x: 2 }}
@@ -89,10 +89,10 @@ const SidebarNav = () => (
 	<motion.div 
 		initial={{ x: -20, opacity: 0 }}
 		animate={{ x: 0, opacity: 1 }}
-		className="w-full max-w-xs p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+		className="w-full max-w-xs mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
 	>
-		<div className="space-y-3">
-			<div className="px-3 py-2">
+		<div className="p-4 space-y-3">
+			<div className="px-3 py-2 mb-2">
 				<h3 className="text-white font-semibold text-sm">Navigation</h3>
 			</div>
 			{[
@@ -635,36 +635,45 @@ const PricingToggle = () => {
 	
 	return (
 		<motion.div 
-			className="flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
+			className="w-full max-w-xs mx-auto p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden"
 		>
-			<span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
-				Monthly
-			</span>
-			<motion.button
-				onClick={() => setIsYearly(!isYearly)}
-				className={`relative w-14 h-7 rounded-full transition-all duration-300 ${
-					isYearly ? 'bg-purple-500' : 'bg-white/20'
-				}`}
-				whileTap={{ scale: 0.95 }}
-			>
-				<motion.div
-					className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
-					animate={{ x: isYearly ? 28 : 4 }}
-					transition={{ type: "spring", stiffness: 500, damping: 30 }}
-				/>
-			</motion.button>
-			<span className={`text-sm font-medium transition-colors ${isYearly ? 'text-white' : 'text-gray-400'}`}>
-				Yearly
-			</span>
-			{isYearly && (
-				<motion.span 
-					initial={{ scale: 0, opacity: 0 }}
-					animate={{ scale: 1, opacity: 1 }}
-					className="px-2 py-1 bg-green-500 text-white text-xs rounded-full font-bold"
-				>
-					20% OFF
-				</motion.span>
-			)}
+			<div className="flex flex-col items-center space-y-4">
+				<div className="flex items-center space-x-3">
+					<span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
+						Monthly
+					</span>
+					<motion.button
+						onClick={() => setIsYearly(!isYearly)}
+						className={`relative w-14 h-7 rounded-full transition-all duration-300 ${
+							isYearly ? 'bg-purple-500' : 'bg-white/20'
+						}`}
+						whileTap={{ scale: 0.95 }}
+					>
+						<motion.div
+							className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
+							animate={{ x: isYearly ? 28 : 4 }}
+							transition={{ type: "spring", stiffness: 500, damping: 30 }}
+						/>
+					</motion.button>
+					<span className={`text-sm font-medium transition-colors ${isYearly ? 'text-white' : 'text-gray-400'}`}>
+						Yearly
+					</span>
+				</div>
+				
+				{/* Badge positioned below to avoid overflow */}
+				<div className="h-6 flex items-center justify-center">
+					{isYearly && (
+						<motion.span 
+							initial={{ scale: 0, opacity: 0, y: -10 }}
+							animate={{ scale: 1, opacity: 1, y: 0 }}
+							exit={{ scale: 0, opacity: 0, y: -10 }}
+							className="px-3 py-1 bg-green-500 text-white text-xs rounded-full font-bold shadow-lg"
+						>
+							20% OFF
+						</motion.span>
+					)}
+				</div>
+			</div>
 		</motion.div>
 	)
 }
@@ -894,7 +903,7 @@ const componentData: ComponentType[] = [
 		</motion.button>
 	</div>
 </motion.div>` },
-	{ id: 14, title: 'Portal', category: 'Cards', preview: <GlassModal />, size: 'normal', code: `const [isOpen, setIsOpen] = useState(false)
+	{ id: 14, title: 'Portal', category: 'Cards', preview: <GlassModal />, size: 'nav', code: `const [isOpen, setIsOpen] = useState(false)
 
 <>
 	<motion.button
@@ -926,18 +935,18 @@ const componentData: ComponentType[] = [
 					className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-colors"
 				>
 					Close
-  </button>
+				</button>
 			</motion.div>
 		</motion.div>
 	)}
 </>` },
-	{ id: 15, title: 'Nebula', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'normal', code: `<motion.nav 
+	{ id: 15, title: 'Nebula', category: 'Navigation', preview: <VerticalFloatingNav />, size: 'nav', code: `<motion.nav 
 	initial={{ x: -20, opacity: 0 }}
 	animate={{ x: 0, opacity: 1 }}
-	className="py-4 px-3 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	className="h-fit py-4 px-4 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl mx-auto"
 >
 	<div className="flex flex-col items-center space-y-4">
-		{[Home, Search, Heart, Settings, User].map((Icon, index) => (
+		{[Home, Search, Heart, Settings].map((Icon, index) => (
 			<motion.button
 				key={index}
 				whileHover={{ scale: 1.1, x: 2 }}
@@ -949,13 +958,13 @@ const componentData: ComponentType[] = [
 		))}
 	</div>
 </motion.nav>` },
-	{ id: 16, title: 'Matrix', category: 'Navigation', preview: <SidebarNav />, size: 'wide', code: `<motion.div 
+	{ id: 16, title: 'Matrix', category: 'Navigation', preview: <SidebarNav />, size: 'nav', code: `<motion.div 
 	initial={{ x: -20, opacity: 0 }}
 	animate={{ x: 0, opacity: 1 }}
-	className="w-full max-w-xs p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
+	className="w-full max-w-xs mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
 >
-	<div className="space-y-3">
-		<div className="px-3 py-2">
+	<div className="p-4 space-y-3">
+		<div className="px-3 py-2 mb-2">
 			<h3 className="text-white font-semibold text-sm">Navigation</h3>
 		</div>
 		{[
@@ -975,7 +984,7 @@ const componentData: ComponentType[] = [
 		))}
 	</div>
 </motion.div>` },
-	{ id: 17, title: 'Helix', category: 'Loading', preview: <LoadingSpinner />, size: 'normal', code: `<motion.div 
+	{ id: 17, title: 'Helix', category: 'Loading', preview: <LoadingSpinner />, size: 'nav', code: `<motion.div 
 	className="flex items-center justify-center"
 >
 	<motion.div
@@ -1031,7 +1040,7 @@ const componentData: ComponentType[] = [
 	<h3 className="text-white font-semibold text-lg">$24,500</h3>
 	<p className="text-gray-400 text-sm">Total Revenue</p>
 </motion.div>` },
-	{ id: 21, title: 'Forge', category: 'Buttons', preview: <NeumorphismButton />, size: 'normal', code: `<motion.button
+	{ id: 21, title: 'Forge', category: 'Buttons', preview: <NeumorphismButton />, size: 'nav', code: `<motion.button
 	whileHover={{ scale: 1.05 }}
 	whileTap={{ scale: 0.95 }}
 	className="px-8 py-4 bg-gray-200 text-gray-800 rounded-2xl shadow-[inset_8px_8px_16px_#bebebe,inset_-8px_-8px_16px_#ffffff] hover:shadow-[inset_12px_12px_20px_#bebebe,inset_-12px_-12px_20px_#ffffff] transition-all duration-300 font-medium"
@@ -1176,34 +1185,45 @@ const componentData: ComponentType[] = [
 	{ id: 28, title: 'Flux', category: 'Pricing', preview: <PricingToggle />, size: 'normal', code: `const [isYearly, setIsYearly] = useState(false)
 
 <motion.div 
-	className="flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
+	className="w-full max-w-xs mx-auto p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden"
 >
-	<span className={\`text-sm font-medium transition-colors \${!isYearly ? 'text-white' : 'text-gray-400'}\`}>
-		Monthly
-	</span>
-	<motion.button
-		onClick={() => setIsYearly(!isYearly)}
-		className={\`relative w-14 h-7 rounded-full transition-all duration-300 \${isYearly ? 'bg-purple-500' : 'bg-white/20'}\`}
-		whileTap={{ scale: 0.95 }}
-	>
-		<motion.div
-			className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
-			animate={{ x: isYearly ? 28 : 4 }}
-			transition={{ type: "spring", stiffness: 500, damping: 30 }}
-		/>
-	</motion.button>
-	<span className={\`text-sm font-medium transition-colors \${isYearly ? 'text-white' : 'text-gray-400'}\`}>
-		Yearly
-	</span>
-	{isYearly && (
-		<motion.span 
-			initial={{ scale: 0, opacity: 0 }}
-			animate={{ scale: 1, opacity: 1 }}
-			className="px-2 py-1 bg-green-500 text-white text-xs rounded-full font-bold"
-		>
-			20% OFF
-		</motion.span>
-	)}
+	<div className="flex flex-col items-center space-y-4">
+		<div className="flex items-center space-x-3">
+			<span className={\`text-sm font-medium transition-colors \${!isYearly ? 'text-white' : 'text-gray-400'}\`}>
+				Monthly
+			</span>
+			<motion.button
+				onClick={() => setIsYearly(!isYearly)}
+				className={\`relative w-14 h-7 rounded-full transition-all duration-300 \${
+					isYearly ? 'bg-purple-500' : 'bg-white/20'
+				}\`}
+				whileTap={{ scale: 0.95 }}
+			>
+				<motion.div
+					className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-lg"
+					animate={{ x: isYearly ? 28 : 4 }}
+					transition={{ type: "spring", stiffness: 500, damping: 30 }}
+				/>
+			</motion.button>
+			<span className={\`text-sm font-medium transition-colors \${isYearly ? 'text-white' : 'text-gray-400'}\`}>
+				Yearly
+			</span>
+		</div>
+		
+		{/* Badge positioned below to avoid overflow */}
+		<div className="h-6 flex items-center justify-center">
+			{isYearly && (
+				<motion.span 
+					initial={{ scale: 0, opacity: 0, y: -10 }}
+					animate={{ scale: 1, opacity: 1, y: 0 }}
+					exit={{ scale: 0, opacity: 0, y: -10 }}
+					className="px-3 py-1 bg-green-500 text-white text-xs rounded-full font-bold shadow-lg"
+				>
+					20% OFF
+				</motion.span>
+			)}
+		</div>
+	</div>
 </motion.div>` }
 ]
 
@@ -1248,6 +1268,8 @@ export default function ComponentsPage() {
 				return 'md:row-span-2 h-96'
 			case 'large':
 				return 'md:col-span-2 md:row-span-2 h-96'
+			case 'nav':
+				return 'h-80'
 			case 'pricing':
 				return 'md:col-span-4 lg:col-span-4 xl:col-span-4 h-[28rem]'
 			default:
@@ -1341,14 +1363,14 @@ export default function ComponentsPage() {
 											whileTap={{ scale: 0.95 }}
 											className="p-2 bg-black/40 hover:bg-black/60 rounded-lg transition-all duration-200 backdrop-blur-sm"
 											title="Copy Name"
-										>
-											{copiedId === component.id ? (
+											>
+												{copiedId === component.id ? (
 												<Check className="w-4 h-4 text-green-400" />
-											) : (
+												) : (
 												<Copy className="w-4 h-4 text-white/60 hover:text-white" />
-											)}
+												)}
 										</motion.button>
-									</div>
+										</div>
 
 									{/* Component Preview - Center */}
 									<div className="flex items-center justify-center p-6 h-full">
