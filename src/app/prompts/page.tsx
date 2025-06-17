@@ -15,7 +15,10 @@ const categories = [
 	'Marketing',
 	'Business',
 	'Creative',
-	'Strategy'
+	'Strategy',
+	'Testing',
+	'Documentation',
+	'Security'
 ]
 
 // System prompts from the GitHub repository
@@ -411,6 +414,544 @@ Focus on reducing manual work while maintaining high quality and reliability in 
 	},
 	{ 
 		id: 11, 
+		title: 'Claude 3.5 Sonnet System Prompt', 
+		category: 'AI Assistants', 
+		height: 'h-88',
+		description: 'Anthropic\'s Claude 3.5 Sonnet system prompt for helpful, harmless, and honest AI assistance.',
+		content: `Claude is made by Anthropic. The current date is November 2024.
+
+Claude's knowledge cutoff is April 2024. It cannot browse the internet.
+
+Claude should give thorough responses to more complex and open-ended questions or instructions, but be concise with simpler questions where brevity is appropriate.
+
+Claude aims to be helpful, harmless, and honest. Claude should be honest about its capabilities and limitations, and transparent about how its responses are generated.
+
+Claude should follow these guidelines for conversations:
+- Be helpful by providing accurate, relevant, and useful information
+- Be harmless by avoiding content that could cause harm
+- Be honest about what you know and don't know
+- Show your reasoning process when appropriate
+- Ask clarifying questions when needed
+- Admit uncertainty rather than guessing
+- Provide balanced perspectives on controversial topics
+- Respect human autonomy and avoid being manipulative
+
+For coding tasks:
+- Write clean, readable, and well-documented code
+- Follow language-specific best practices
+- Include error handling where appropriate
+- Explain complex logic or algorithms
+- Suggest testing approaches
+- Consider security implications
+
+Claude should engage thoughtfully with creative tasks while maintaining helpfulness and honesty.`
+	},
+	{ 
+		id: 12, 
+		title: 'OpenAI ChatGPT System Message', 
+		category: 'AI Assistants', 
+		height: 'h-72',
+		description: 'OpenAI\'s ChatGPT system message for conversational AI assistance across various domains.',
+		content: `You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible.
+
+## Core Capabilities
+- Provide helpful, accurate, and informative responses
+- Assist with a wide range of tasks and questions
+- Maintain conversational context and flow
+- Offer creative and analytical thinking
+
+## Response Guidelines
+- Be concise yet comprehensive
+- Use clear and accessible language
+- Provide examples when helpful
+- Ask clarifying questions when needed
+- Acknowledge limitations and uncertainties
+
+## Tool Integration
+- Execute Python code in Jupyter environment
+- Browse and search web content
+- Generate images with DALL-E
+- Access real-time information
+- Process and analyze data
+
+## Interaction Style
+- Professional yet friendly tone
+- Adaptive to user preferences
+- Balanced and objective perspectives
+- Respectful of all viewpoints
+- Educational and informative approach
+
+Focus on being helpful, informative, and creative while following OpenAI's usage policies.`
+	},
+	{ 
+		id: 13, 
+		title: 'Cline VS Code Extension', 
+		category: 'AI Assistants', 
+		height: 'h-76',
+		description: 'Cline\'s system prompt for autonomous development tasks with tool integration in VS Code.',
+		content: `You are Cline, an AI assistant that can help users accomplish a wide variety of tasks. You are integrated with VS Code and have access to a comprehensive set of tools that allow you to create and edit files, run terminal commands, and interact with the user's development environment.
+
+## Available Tools
+- **File Operations**: Create, read, edit, and delete files and directories
+- **Terminal Commands**: Execute shell commands and scripts
+- **Code Analysis**: Analyze code structure and dependencies
+- **Search Operations**: Search through codebases and files
+
+## Key Capabilities
+- Full-stack development assistance
+- Debugging and troubleshooting
+- Code refactoring and optimization
+- Project setup and configuration
+- Testing and deployment automation
+
+## Working Style
+- Always ask clarifying questions when requirements are unclear
+- Break down complex tasks into manageable steps
+- Provide detailed explanations for code changes
+- Test changes before considering them complete
+- Follow best practices for the specific technology stack
+
+## Code Quality Standards
+- Write clean, maintainable, and well-documented code
+- Follow language-specific conventions and best practices
+- Implement proper error handling and logging
+- Consider security implications in all implementations
+- Optimize for performance and scalability
+
+Always strive to understand the full context of the user's project and goals before making changes.`
+	},
+	{ 
+		id: 14, 
+		title: 'Bolt.new AI Web Development', 
+		category: 'Code Generation', 
+		height: 'h-84',
+		description: 'Bolt.new\'s system prompt for full-stack web application development with modern frameworks.',
+		content: `You are Bolt, a cutting-edge AI web development assistant specialized in creating modern web applications.
+
+## Core Technologies
+- **Frontend**: React, Vue, Svelte, Next.js, Nuxt, Astro
+- **Styling**: Tailwind CSS, CSS Modules, Styled Components
+- **Backend**: Node.js, Express, Fastify, tRPC
+- **Database**: PostgreSQL, MongoDB, SQLite, Prisma
+- **Deployment**: Vercel, Netlify, Railway, Fly.io
+
+## Development Approach
+1. **Modern Stack**: Always use the latest stable versions
+2. **Type Safety**: Prefer TypeScript for all projects
+3. **Performance**: Optimize for Core Web Vitals
+4. **Accessibility**: Implement WCAG 2.1 AA standards
+5. **SEO**: Built-in SEO optimization
+
+## Code Generation Standards
+- Clean, readable, and maintainable code
+- Comprehensive error handling
+- Responsive design by default
+- Security best practices
+- Testing setup included
+
+## Project Structure
+- Follow framework-specific conventions
+- Implement proper folder organization
+- Include configuration files
+- Set up development tooling
+- Provide deployment instructions
+
+## Features Implementation
+- Authentication and authorization
+- Database integration
+- API development
+- Real-time features
+- File upload handling
+- Payment processing
+- Email services
+
+Generate production-ready applications with modern development practices and comprehensive documentation.`
+	},
+	{ 
+		id: 15, 
+		title: 'RooCode AI Developer', 
+		category: 'Development', 
+		height: 'h-68',
+		description: 'RooCode\'s system prompt for intelligent code generation and development assistance.',
+		content: `You are RooCode, an AI-powered development assistant focused on writing high-quality, production-ready code.
+
+## Development Philosophy
+- Code quality over quantity
+- Security-first approach
+- Performance optimization
+- Maintainable architecture
+- Comprehensive testing
+
+## Supported Languages & Frameworks
+- **Web**: JavaScript, TypeScript, React, Vue, Angular
+- **Backend**: Node.js, Python, Java, Go, Rust
+- **Mobile**: React Native, Flutter, Swift, Kotlin
+- **Database**: SQL, NoSQL, GraphQL
+- **Cloud**: AWS, GCP, Azure, Docker, Kubernetes
+
+## Code Standards
+- Follow language-specific best practices
+- Implement proper error handling
+- Write comprehensive comments
+- Include unit tests
+- Consider edge cases
+
+## Architecture Patterns
+- Microservices architecture
+- Clean architecture principles
+- Design patterns implementation
+- SOLID principles
+- DRY and KISS methodologies
+
+## Development Workflow
+1. Analyze requirements thoroughly
+2. Design system architecture
+3. Implement core functionality
+4. Add comprehensive tests
+5. Optimize performance
+6. Document thoroughly
+
+Always prioritize code quality, security, and maintainability in every implementation.`
+	},
+	{ 
+		id: 16, 
+		title: 'Pytest Testing Framework', 
+		category: 'Testing', 
+		height: 'h-76',
+		description: 'Comprehensive pytest prompt for Python testing with fixtures, parametrization, and best practices.',
+		content: `Write comprehensive pytest tests with the following guidelines:
+
+## Test Structure
+- Use clear, descriptive test names following the pattern test_<action>_<expected_result>
+- Organize tests in logical groups using classes when appropriate
+- Follow AAA pattern: Arrange, Act, Assert
+
+## Fixtures and Setup
+- Create reusable fixtures for common test data
+- Use appropriate fixture scopes (function, class, module, session)
+- Implement teardown logic for cleanup
+- Use dependency injection for test isolation
+
+## Test Coverage
+- Aim for high test coverage (>90%)
+- Test happy path and edge cases
+- Include negative test cases
+- Test error handling and exceptions
+
+## Parametrization
+- Use @pytest.mark.parametrize for multiple test cases
+- Test different input combinations
+- Include boundary value testing
+
+## Mocking and Patching
+- Mock external dependencies
+- Use unittest.mock or pytest-mock
+- Patch at appropriate levels
+- Verify mock interactions
+
+## Performance Testing
+- Include performance benchmarks
+- Test scalability scenarios
+- Monitor resource usage
+- Set appropriate timeouts
+
+Generate production-ready test suites that ensure code reliability and maintainability.`
+	},
+	{ 
+		id: 17, 
+		title: 'Jest JavaScript Testing', 
+		category: 'Testing', 
+		height: 'h-72',
+		description: 'Jest testing framework prompt for JavaScript/TypeScript with React Testing Library integration.',
+		content: `Create comprehensive Jest tests following modern JavaScript testing best practices:
+
+## Test Organization
+- Use describe blocks for logical grouping
+- Write clear, descriptive test names
+- Follow the AAA pattern (Arrange, Act, Assert)
+- Use beforeEach/afterEach for setup and cleanup
+
+## React Component Testing
+- Use React Testing Library for user-centric tests
+- Test component behavior, not implementation
+- Use queries that resemble user interaction
+- Test accessibility features
+
+## Mock Strategies
+- Mock external modules and APIs
+- Use jest.mock() for module mocking
+- Create manual mocks in __mocks__ directory
+- Mock timers and async operations
+
+## Assertion Patterns
+- Use specific matchers for better error messages
+- Test for exact values when needed
+- Use snapshot testing judiciously
+- Verify side effects and state changes
+
+## Async Testing
+- Use async/await for promise handling
+- Test loading states and error scenarios
+- Mock API responses appropriately
+- Handle race conditions
+
+## Coverage Requirements
+- Maintain high test coverage
+- Focus on critical business logic
+- Test error boundaries and edge cases
+- Include integration tests
+
+Write tests that are maintainable, reliable, and provide confidence in code changes.`
+	},
+	{ 
+		id: 18, 
+		title: 'API Documentation Generator', 
+		category: 'Documentation', 
+		height: 'h-80',
+		description: 'Generate comprehensive API documentation with examples, schemas, and interactive features.',
+		content: `Create comprehensive API documentation with the following structure:
+
+## Overview
+- API purpose and key features
+- Base URL and versioning strategy
+- Authentication methods
+- Rate limiting information
+- Error handling patterns
+
+## Authentication
+- Detailed auth flow descriptions
+- API key management
+- Token expiration and refresh
+- Security best practices
+
+## Endpoints Documentation
+For each endpoint include:
+- HTTP method and URL
+- Description and use cases
+- Request parameters (path, query, body)
+- Request/response schemas
+- Example requests and responses
+- Error codes and descriptions
+
+## Data Models
+- Complete schema definitions
+- Field descriptions and constraints
+- Relationships between models
+- Example data structures
+
+## Code Examples
+- Multiple programming languages
+- SDK usage examples
+- cURL commands
+- Postman collection links
+
+## Interactive Features
+- Try-it-out functionality
+- Schema validation
+- Response examples
+- Sandbox environment
+
+## Additional Resources
+- Changelog and versioning
+- Migration guides
+- FAQ section
+- Support contact information
+
+Generate documentation that is clear, comprehensive, and developer-friendly.`
+	},
+	{ 
+		id: 19, 
+		title: 'Technical Writing Assistant', 
+		category: 'Documentation', 
+		height: 'h-72',
+		description: 'Professional technical writing prompt for clear, concise, and user-focused documentation.',
+		content: `Write clear, concise technical documentation following these principles:
+
+## Writing Style
+- Use active voice and present tense
+- Write for your specific audience
+- Use simple, direct language
+- Avoid jargon and unnecessary complexity
+- Break up long sentences and paragraphs
+
+## Document Structure
+- Start with clear objectives
+- Use logical information hierarchy
+- Include table of contents for longer docs
+- Add cross-references and links
+- Provide summary and next steps
+
+## Code Documentation
+- Include working code examples
+- Add inline comments for complex logic
+- Provide complete, runnable examples
+- Show expected outputs
+- Include error handling examples
+
+## User Experience
+- Anticipate user questions
+- Provide troubleshooting sections
+- Include screenshots and diagrams
+- Add search functionality
+- Enable feedback mechanisms
+
+## Content Types
+- Getting started guides
+- API reference documentation
+- Tutorials and how-tos
+- Architecture overviews
+- Troubleshooting guides
+
+## Quality Assurance
+- Review for accuracy and completeness
+- Test all instructions and code
+- Check for consistency in style
+- Validate links and references
+- Regular content updates
+
+Create documentation that empowers users to succeed with your product or service.`
+	},
+	{ 
+		id: 20, 
+		title: 'Security Audit Prompt', 
+		category: 'Security', 
+		height: 'h-88',
+		description: 'Comprehensive security audit prompt for identifying vulnerabilities and implementing security best practices.',
+		content: `Perform a comprehensive security audit covering these critical areas:
+
+## Authentication & Authorization
+- Review authentication mechanisms
+- Check for proper session management
+- Verify authorization controls
+- Test for privilege escalation
+- Audit password policies
+
+## Input Validation
+- Test for SQL injection vulnerabilities
+- Check for XSS (Cross-Site Scripting)
+- Verify CSRF protection
+- Test file upload security
+- Review API input validation
+
+## Data Protection
+- Audit data encryption (at rest and in transit)
+- Check for sensitive data exposure
+- Verify PII handling compliance
+- Review backup security
+- Test data deletion procedures
+
+## Infrastructure Security
+- Review server configurations
+- Check for outdated dependencies
+- Audit network security settings
+- Verify SSL/TLS implementation
+- Test for security headers
+
+## Code Security
+- Static code analysis
+- Dependency vulnerability scanning
+- Secret management review
+- Error handling assessment
+- Logging and monitoring audit
+
+## Compliance Checks
+- GDPR compliance verification
+- SOC 2 requirements review
+- Industry-specific standards
+- Privacy policy alignment
+- Data retention policies
+
+## Reporting
+- Risk severity classification
+- Detailed vulnerability descriptions
+- Remediation recommendations
+- Implementation timeline
+- Follow-up procedures
+
+Provide actionable security recommendations with clear implementation guidance.`
+	},
+	{ 
+		id: 21, 
+		title: 'OWASP Security Guidelines', 
+		category: 'Security', 
+		height: 'h-84',
+		description: 'OWASP Top 10 security vulnerabilities prevention and mitigation strategies for web applications.',
+		content: `Implement security measures based on OWASP Top 10 vulnerabilities:
+
+## Injection Attacks Prevention
+- Use parameterized queries/prepared statements
+- Implement input validation and sanitization
+- Apply least privilege principles
+- Use ORM frameworks properly
+- Regular security testing
+
+## Broken Authentication
+- Implement multi-factor authentication
+- Use secure session management
+- Apply strong password policies
+- Protect against brute force attacks
+- Secure password recovery processes
+
+## Sensitive Data Exposure
+- Encrypt data at rest and in transit
+- Use proper key management
+- Implement secure communication protocols
+- Remove unnecessary sensitive data
+- Apply data masking techniques
+
+## XML External Entities (XXE)
+- Disable XML external entity processing
+- Use secure XML parsers
+- Implement input validation
+- Use JSON instead of XML when possible
+- Keep XML processors updated
+
+## Broken Access Control
+- Implement proper authorization checks
+- Use role-based access control (RBAC)
+- Apply principle of least privilege
+- Test access controls thoroughly
+- Monitor for access violations
+
+## Security Misconfiguration
+- Secure default configurations
+- Regular security updates
+- Remove unnecessary features
+- Implement security headers
+- Automated security scanning
+
+## Cross-Site Scripting (XSS)
+- Input validation and output encoding
+- Content Security Policy (CSP)
+- Use safe APIs and frameworks
+- Regular security testing
+- User education
+
+## Insecure Deserialization
+- Avoid native deserialization
+- Implement integrity checks
+- Use restricted environments
+- Monitor deserialization activities
+- Input validation
+
+## Using Components with Known Vulnerabilities
+- Maintain inventory of components
+- Regular vulnerability scanning
+- Automated dependency updates
+- Security-focused development lifecycle
+- Vendor security monitoring
+
+## Insufficient Logging & Monitoring
+- Comprehensive audit logging
+- Real-time monitoring systems
+- Incident response procedures
+- Log integrity protection
+- Regular log analysis
+
+Implement these security measures as part of a comprehensive security strategy.`
+	},
+	{ 
+		id: 22, 
 		title: 'Landing Page Hero Section', 
 		category: 'Marketing', 
 		height: 'h-64',
@@ -418,7 +959,59 @@ Focus on reducing manual work while maintaining high quality and reliability in 
 		content: 'Create a compelling hero section for a SaaS landing page. Include a powerful headline that addresses the main pain point, a supporting subheadline, and a clear call-to-action button. Make it conversion-focused and visually appealing with social proof elements.'
 	},
 	{ 
-		id: 12, 
+		id: 23, 
+		title: 'Email Marketing Campaign', 
+		category: 'Marketing', 
+		height: 'h-72',
+		description: 'Design high-converting email campaigns with personalization and segmentation strategies.',
+		content: `Create a high-converting email marketing campaign with these elements:
+
+## Campaign Strategy
+- Define clear campaign objectives
+- Identify target audience segments
+- Create compelling value propositions
+- Plan multi-touch sequences
+- Set measurable success metrics
+
+## Subject Line Optimization
+- A/B test different variations
+- Use personalization tokens
+- Create urgency and curiosity
+- Keep under 50 characters
+- Avoid spam trigger words
+
+## Email Content Structure
+- Compelling preheader text
+- Clear and engaging headline
+- Concise body copy with benefits
+- Strong call-to-action buttons
+- Social proof and testimonials
+
+## Personalization & Segmentation
+- Dynamic content based on user data
+- Behavioral triggers and workflows
+- Geographic and demographic targeting
+- Purchase history segmentation
+- Engagement level customization
+
+## Design Best Practices
+- Mobile-responsive templates
+- Clear visual hierarchy
+- Brand consistency
+- Accessibility considerations
+- Fast loading images
+
+## Performance Optimization
+- Deliverability best practices
+- List hygiene and management
+- Testing and optimization
+- Analytics and reporting
+- Continuous improvement
+
+Generate email campaigns that drive engagement and conversions.`
+	},
+	{ 
+		id: 24, 
 		title: 'React Component Builder', 
 		category: 'Development', 
 		height: 'h-56',
@@ -426,7 +1019,66 @@ Focus on reducing manual work while maintaining high quality and reliability in 
 		content: 'Build a reusable React component with TypeScript. Include proper prop types, error handling, accessibility features, and performance optimizations. Follow best practices for maintainability and testing.'
 	},
 	{ 
-		id: 13, 
+		id: 25, 
+		title: 'Microservices Architecture', 
+		category: 'Development', 
+		height: 'h-92',
+		description: 'Design scalable microservices architecture with proper service boundaries and communication patterns.',
+		content: `Design a microservices architecture following these principles:
+
+## Service Design Principles
+- Single Responsibility Principle
+- Business capability alignment
+- Proper service boundaries
+- Data ownership per service
+- Independent deployment capability
+
+## Communication Patterns
+- Synchronous vs asynchronous communication
+- Event-driven architectures
+- API gateway implementation
+- Service mesh considerations
+- Circuit breaker patterns
+
+## Data Management
+- Database per service pattern
+- Event sourcing and CQRS
+- Distributed transaction handling
+- Data consistency strategies
+- Polyglot persistence
+
+## Infrastructure Requirements
+- Container orchestration (Kubernetes)
+- Service discovery mechanisms
+- Load balancing strategies
+- Health checks and monitoring
+- Distributed tracing
+
+## Operational Concerns
+- Centralized logging
+- Distributed monitoring
+- Deployment automation
+- Configuration management
+- Security implementations
+
+## Scalability & Resilience
+- Horizontal scaling strategies
+- Fault tolerance mechanisms
+- Performance optimization
+- Resource management
+- Disaster recovery planning
+
+## Development Practices
+- Domain-driven design
+- API versioning strategies
+- Testing approaches
+- Documentation standards
+- Team organization
+
+Design architectures that are scalable, maintainable, and resilient.`
+	},
+	{ 
+		id: 26, 
 		title: 'Product Requirements Document', 
 		category: 'Business', 
 		height: 'h-72',
@@ -434,7 +1086,80 @@ Focus on reducing manual work while maintaining high quality and reliability in 
 		content: 'Create a comprehensive Product Requirements Document (PRD) including executive summary, problem statement, user stories, functional requirements, technical specifications, success metrics, timeline, and dependencies. Make it clear and actionable for development teams.'
 	},
 	{ 
-		id: 14, 
+		id: 27, 
+		title: 'Business Model Canvas', 
+		category: 'Business', 
+		height: 'h-80',
+		description: 'Strategic business model design using the Business Model Canvas framework.',
+		content: `Create a comprehensive Business Model Canvas covering:
+
+## Key Partners
+- Strategic partnerships and alliances
+- Supplier relationships
+- Distribution channels
+- Technology partners
+- Investment partners
+
+## Key Activities
+- Core business operations
+- Production and manufacturing
+- Problem-solving activities
+- Platform/network management
+- Research and development
+
+## Key Resources
+- Physical assets and infrastructure
+- Intellectual property
+- Human resources and talent
+- Financial resources
+- Digital assets and data
+
+## Value Propositions
+- Customer pain point solutions
+- Unique selling propositions
+- Product/service benefits
+- Competitive advantages
+- Innovation elements
+
+## Customer Relationships
+- Customer acquisition strategies
+- Retention and loyalty programs
+- Support and service models
+- Community building
+- Co-creation opportunities
+
+## Channels
+- Sales and distribution channels
+- Marketing and communication
+- Customer touchpoints
+- Partner channels
+- Digital platforms
+
+## Customer Segments
+- Target market definition
+- Customer personas
+- Market segmentation
+- Niche markets
+- Multi-sided platforms
+
+## Cost Structure
+- Fixed and variable costs
+- Economy of scale opportunities
+- Cost optimization strategies
+- Value-driven vs cost-driven
+- Key metrics and KPIs
+
+## Revenue Streams
+- Revenue models and pricing
+- Recurring vs one-time revenue
+- Multiple revenue sources
+- Market pricing strategies
+- Financial projections
+
+Design sustainable and scalable business models.`
+	},
+	{ 
+		id: 28, 
 		title: 'Brand Identity System', 
 		category: 'Creative', 
 		height: 'h-68',
@@ -442,12 +1167,137 @@ Focus on reducing manual work while maintaining high quality and reliability in 
 		content: 'Develop a complete brand identity system including logo variations, color palette, typography hierarchy, brand voice guidelines, messaging framework, and visual style guide. Ensure consistency across all brand touchpoints.'
 	},
 	{ 
-		id: 15, 
+		id: 29, 
+		title: 'Video Content Strategy', 
+		category: 'Creative', 
+		height: 'h-76',
+		description: 'Comprehensive video content strategy for social media and marketing campaigns.',
+		content: `Develop a comprehensive video content strategy:
+
+## Content Planning
+- Define content pillars and themes
+- Create content calendar and schedule
+- Plan video series and campaigns
+- Identify trending topics and opportunities
+- Develop evergreen content assets
+
+## Production Guidelines
+- Video format specifications
+- Branding and visual consistency
+- Audio quality requirements
+- Lighting and composition rules
+- Equipment and software recommendations
+
+## Platform Optimization
+- Platform-specific requirements
+- Optimal video lengths and formats
+- Thumbnail design strategies
+- Caption and subtitle best practices
+- Hashtag and SEO optimization
+
+## Storytelling Framework
+- Hook, story, and call-to-action structure
+- Character development and personas
+- Emotional connection strategies
+- Visual storytelling techniques
+- Narrative arc development
+
+## Distribution Strategy
+- Multi-platform publishing
+- Cross-promotion tactics
+- Influencer collaborations
+- Paid promotion strategies
+- Community engagement
+
+## Performance Metrics
+- View and engagement analytics
+- Conversion tracking
+- Audience retention analysis
+- A/B testing strategies
+- ROI measurement
+
+## Content Types
+- Educational and tutorial content
+- Behind-the-scenes footage
+- Product demonstrations
+- Customer testimonials
+- Entertainment and lifestyle content
+
+Create engaging video content that builds brand awareness and drives results.`
+	},
+	{ 
+		id: 30, 
 		title: 'Go-to-Market Strategy', 
 		category: 'Strategy', 
 		height: 'h-80',
 		description: 'Comprehensive GTM strategy framework for product launches.',
 		content: 'Develop a comprehensive go-to-market strategy including target market analysis, competitive positioning, pricing strategy, distribution channels, marketing tactics, sales approach, success metrics, and launch timeline. Make it actionable and measurable.'
+	},
+	{ 
+		id: 31, 
+		title: 'Digital Transformation Roadmap', 
+		category: 'Strategy', 
+		height: 'h-88',
+		description: 'Strategic roadmap for organizational digital transformation with technology and process optimization.',
+		content: `Create a comprehensive digital transformation roadmap:
+
+## Current State Assessment
+- Technology infrastructure audit
+- Process efficiency analysis
+- Skills gap identification
+- Cultural readiness evaluation
+- Competitive landscape review
+
+## Vision & Objectives
+- Define digital transformation goals
+- Establish success metrics and KPIs
+- Align with business strategy
+- Stakeholder engagement plan
+- Change management approach
+
+## Technology Strategy
+- Cloud migration planning
+- Legacy system modernization
+- Data strategy and analytics
+- Automation opportunities
+- Cybersecurity enhancements
+
+## Process Optimization
+- Workflow digitization
+- Customer experience improvements
+- Operational efficiency gains
+- Quality management systems
+- Performance monitoring
+
+## Organization & Culture
+- Digital skills development
+- Leadership engagement
+- Change management programs
+- Communication strategies
+- Innovation culture building
+
+## Implementation Phases
+- Quick wins identification
+- Phased rollout planning
+- Resource allocation
+- Risk mitigation strategies
+- Timeline and milestones
+
+## Governance & Measurement
+- Program management office
+- Progress tracking mechanisms
+- Regular review processes
+- Adaptation strategies
+- Continuous improvement
+
+## Investment & ROI
+- Budget planning and allocation
+- Cost-benefit analysis
+- Funding strategies
+- ROI measurement
+- Value realization tracking
+
+Design transformation initiatives that drive sustainable competitive advantage.`
 	}
 ]
 
